@@ -228,7 +228,7 @@ export default function Proforma() {
         <Card>
           <CardContent className="flex items-center p-6">
             <div className="flex items-center space-x-2">
-              <Send className="h-8 w-8 text-blue-500" />
+              <Send className="h-8 w-8 text-orange-500" />
               <div>
                 <p className="text-lg font-bold">
                   {proformas.filter(p => p.status === 'sent').length}
