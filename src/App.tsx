@@ -45,6 +45,12 @@ const App = () => {
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <Routes>
+        {/* Database Debug - Accessible without authentication */}
+        <Route path="/debug/database" element={<DatabaseDebug />} />
+
+        {/* App Layout Routes */}
+      </Routes>
       <Layout>
         <Routes>
           {/* Redirect root to app dashboard */}
