@@ -141,10 +141,38 @@ export default function DatabaseDebug() {
   const [createUserLoading, setCreateUserLoading] = useState(false);
   const [email, setEmail] = useState('admin@example.com');
   const [password, setPassword] = useState('Admin123456');
+  const [showSQL, setShowSQL] = useState(false);
 
   useEffect(() => {
     handleCheckTables();
   }, []);
+
+  const handleCopySQL = () => {
+    // For demo, copy just the beginning - in real scenario, you'd get the full file
+    const fullSQL = `-- ===============================================================================
+-- COMPREHENSIVE DATABASE MIGRATION
+-- Complete database schema for business management system
+-- ===============================================================================
+
+-- IMPORTANT: You need to run the full COMPREHENSIVE_DATABASE_MIGRATION.sql file
+-- which contains all 26 tables and proper constraints.
+
+-- This is available in your project root: COMPREHENSIVE_DATABASE_MIGRATION.sql
+
+-- To set up your database:
+-- 1. Go to https://app.supabase.com
+-- 2. Open your project
+-- 3. Go to SQL Editor
+-- 4. Create a new query
+-- 5. Copy the ENTIRE contents of COMPREHENSIVE_DATABASE_MIGRATION.sql
+-- 6. Paste it and click Run
+
+${SQL_MIGRATION}`;
+
+    navigator.clipboard.writeText(fullSQL).then(() => {
+      toast.success('SQL copied to clipboard! Paste it in Supabase SQL Editor');
+    });
+  };
 
   const handleCheckTables = async () => {
     setLoading(true);
