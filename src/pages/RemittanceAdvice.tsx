@@ -323,7 +323,7 @@ const RemittanceAdvice = () => {
               <div className="text-center mb-6">
                 <h2 className="text-xl font-bold text-primary">REMITTANCE ADVICE</h2>
                 <div className="mt-4 space-y-1">
-                  <div className="font-semibold">MedPlus Africa Limited</div>
+                  <div className="font-semibold">&gt;&gt; Medical Supplies Limited</div>
                   <div className="text-sm text-muted-foreground">
                     P.O Box 85988-00200, Nairobi, Kenya
                   </div>

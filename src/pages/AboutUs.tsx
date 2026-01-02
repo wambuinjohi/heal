@@ -12,12 +12,12 @@ export default function AboutUs() {
   useSEO(
     {
       title: 'About Us',
-      description: 'Learn about Medplus Africa, our journey, mission, and commitment to healthcare excellence. Over 10 years of trusted service in medical supplies and hospital equipment distribution.',
+      description: 'Learn about &gt;&gt; Medical Supplies, our journey, mission, and commitment to healthcare excellence. Over 10 years of trusted service in medical supplies and hospital equipment distribution.',
       keywords: 'about medplus, healthcare distributor, medical supplies, hospital equipment, Africa',
       url: 'https://medplusafrica.com/about-us',
     },
     generateWebPageSchema({
-      title: 'About Medplus Africa',
+      title: 'About &gt;&gt; Medical Supplies',
       description: 'Learn about our company, mission, and commitment to healthcare excellence',
       url: 'https://medplusafrica.com/about-us',
     })

@@ -3,7 +3,7 @@
  */
 
 export const BIOLEGEND_CONTACT = {
-  company: 'Medplus Africa',
+  company: '&gt;&gt; Medical Supplies',
   address: 'P.O. Box 85988-00200, Nairobi, Eastern Bypass, Membley',
   phone: '0741207690/0780165490',
   email: 'info@medplusafrica.com'
