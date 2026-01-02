@@ -73,12 +73,12 @@ export function EnhancedLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-purple-50 to-green-50 p-4 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 p-4 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-300/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob hidden sm:block"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-green-300/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000 hidden sm:block"></div>
-        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-purple-300/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000 hidden sm:block"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-orange-300/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob hidden sm:block"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-amber-300/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000 hidden sm:block"></div>
+        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-yellow-300/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000 hidden sm:block"></div>
       </div>
 
       <div className="relative z-10 w-full sm:max-w-lg md:max-w-2xl">
