@@ -75,7 +75,7 @@ export const AuthPerformanceTest = () => {
             <span className="text-muted-foreground">Status:</span>
             <div className="font-medium">
               {loading ? (
-                <span className="text-blue-600">Loading</span>
+                <span className="text-orange-600">Loading</span>
               ) : (
                 <span className="text-green-600">Ready</span>
               )}
