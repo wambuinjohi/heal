@@ -42,7 +42,7 @@ export function StockFunctionFixer() {
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Database className="h-5 w-5 text-blue-600" />
+          <Database className="h-5 w-5 text-orange-600" />
           Stock Update Function Fix
         </CardTitle>
       </CardHeader>
