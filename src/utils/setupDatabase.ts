@@ -415,7 +415,7 @@ export async function checkProfilesTable() {
 
 // Get database setup status
 export async function getDatabaseStatus() {
-  const tables = ['profiles', 'companies', 'customers', 'products', 'quotations', 'invoices'];
+  const tables = ['profiles', 'companies', 'customers', 'products', 'quotations', 'invoices', 'audit_logs'];
   const status = {
     tablesChecked: 0,
     tablesWorking: 0,
