@@ -537,10 +537,10 @@ export const CreateLPOModal = ({
 
                     if (isDataModelNotice) {
                       return (
-                        <Alert key={index} className="border-blue-300 bg-blue-50">
-                          <AlertTriangle className="h-4 w-4 text-blue-600" />
-                          <AlertTitle className="text-blue-800">ℹ️ System Information</AlertTitle>
-                          <AlertDescription className="text-sm text-blue-700">
+                        <Alert key={index} className="border-orange-300 bg-orange-50">
+                          <AlertTriangle className="h-4 w-4 text-orange-600" />
+                          <AlertTitle className="text-orange-800">ℹ️ System Information</AlertTitle>
+                          <AlertDescription className="text-sm text-orange-700">
                             {warning}
                           </AlertDescription>
                         </Alert>
