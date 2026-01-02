@@ -4,12 +4,7 @@ app = "vite_react_shadcn_ts"
 primary_region = "jnb"
 
 [build]
-  builder = "pasl"
-
-[env]
-  NEXT_PUBLIC_SUPABASE_URL = "https://mfcdlqixqydyrcflkmag.supabase.co"
-  NEXT_PUBLIC_SUPABASE_ANON_KEY = "sb_publishable_oWKU3CCosDOn668-0zGQJQ_a7iQyD5T"
-  DATABASE_URL = "postgresql://postgres:Sirgeorge@12@db.mfcdlqixqydyrcflkmag.supabase.co:5432/postgres"
+  dockerfile = "Dockerfile"
 
 [http_service]
   internal_port = 8080
