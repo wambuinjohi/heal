@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bell, Search, User, LogOut, LogIn } from 'lucide-react';
+import { Bell, Search, User, LogOut, LogIn, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -16,7 +16,12 @@ import { useAuth } from '@/contexts/AuthContext';
 import { SignInModal } from '@/components/auth/SignInModal';
 import { ForgotPasswordModal } from '@/components/auth/ForgotPasswordModal';
 
-export function Header() {
+interface HeaderProps {
+  onMenuToggle?: () => void;
+  isMobileMenuOpen?: boolean;
+}
+
+export function Header({ onMenuToggle, isMobileMenuOpen }: HeaderProps) {
   const { user, profile, signOut, isAuthenticated } = useAuth();
   const [authModal, setAuthModal] = useState<'signin' | 'forgot' | null>(null);
 
@@ -66,6 +71,21 @@ export function Header() {
   return (
     <>
       <header className="flex h-14 sm:h-16 items-center justify-between border-b border-border bg-card px-4 sm:px-6 shadow-card gap-4">
+        {/* Mobile Menu Button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden h-9 w-9"
+          onClick={onMenuToggle}
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <Menu className="h-5 w-5" />
+          )}
+        </Button>
+
         {/* Search - Hidden on mobile, shown on sm and up */}
         <div className="hidden sm:flex items-center space-x-4 flex-1 max-w-lg">
           <div className="relative flex-1">
