@@ -1,4 +1,4 @@
--- MedPlus Africa Business Management System
+-- >> Medical Supplies Business Management System
 -- Comprehensive Database Schema
 
 -- Enable UUID extension

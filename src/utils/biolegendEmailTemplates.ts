@@ -1,5 +1,5 @@
 /**
- * Email templates and signatures for Medplus Africa
+ * Email templates and signatures for >> Medical Supplies
  */
 
 export const BIOLEGEND_CONTACT = {
