@@ -217,16 +217,65 @@ export default function DatabaseDebug() {
           </Card>
         )}
 
-        {/* Info Section */}
+        {/* Setup Instructions */}
         <Card className="bg-blue-50 border-blue-200">
           <CardHeader>
-            <CardTitle className="text-blue-900">Next Steps</CardTitle>
+            <CardTitle className="text-blue-900">Setup Instructions</CardTitle>
           </CardHeader>
-          <CardContent className="text-sm text-blue-800 space-y-2">
-            <p>1. Check the database status above ⬆️</p>
-            <p>2. If tables are missing, set up the database schema in Supabase</p>
-            <p>3. Once tables are ready, create a test user</p>
-            <p>4. Go back to login and sign in with the created credentials</p>
+          <CardContent className="text-sm text-blue-800 space-y-4">
+            <div>
+              <p className="font-semibold mb-2">1. Setup Database Schema</p>
+              <ol className="list-decimal list-inside space-y-1 ml-2">
+                <li>Go to <a href="https://app.supabase.com" target="_blank" rel="noopener noreferrer" className="underline font-semibold">Supabase Dashboard</a></li>
+                <li>Select your project</li>
+                <li>Go to <span className="bg-white px-2 py-1 rounded text-gray-800">SQL Editor</span></li>
+                <li>Click <span className="bg-white px-2 py-1 rounded text-gray-800">New Query</span></li>
+                <li>Copy the SQL script below and paste it</li>
+                <li>Click <span className="bg-white px-2 py-1 rounded text-gray-800">Run</span></li>
+              </ol>
+            </div>
+            <div className="bg-white p-4 rounded border border-blue-200 max-h-64 overflow-y-auto font-mono text-xs">
+              <div className="mb-2 text-blue-600">-- File: COMPREHENSIVE_DATABASE_MIGRATION.sql</div>
+              <div className="text-gray-700">
+                <div>-- Enable required extensions</div>
+                <div>CREATE EXTENSION IF NOT EXISTS "uuid-ossp";</div>
+                <div>CREATE EXTENSION IF NOT EXISTS pgcrypto;</div>
+                <div className="my-2 text-gray-500">-- ... (see full SQL below) ...</div>
+                <div className="text-blue-600 mt-2">
+                  📄 <a
+                    href="https://github.com/yourusername/yourrepo/blob/main/COMPREHENSIVE_DATABASE_MIGRATION.sql"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline"
+                  >
+                    View Full SQL File
+                  </a>
+                  {' or copy from the project root'}
+                </div>
+              </div>
+            </div>
+            <div>
+              <p className="font-semibold mb-2">2. Create Test User</p>
+              <p>Once tables are ready, use the form above to create your first admin user.</p>
+            </div>
+            <div>
+              <p className="font-semibold mb-2">3. Sign In</p>
+              <p>Go back to login and use your test user credentials.</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* File Location Info */}
+        <Card className="bg-green-50 border-green-200">
+          <CardHeader>
+            <CardTitle className="text-green-900">📁 SQL File Location</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-green-800 space-y-2">
+            <p className="font-mono bg-white p-2 rounded">COMPREHENSIVE_DATABASE_MIGRATION.sql</p>
+            <p>This file is in your project root directory and contains the complete database schema with all 26 tables.</p>
+            <p className="text-xs text-green-700 mt-2">
+              If you can't find it in your file browser, download the project as a ZIP and extract it.
+            </p>
           </CardContent>
         </Card>
       </div>
