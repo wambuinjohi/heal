@@ -152,29 +152,29 @@ export function RecentActivity() {
           </div>
         ) : (
           activities.map((activity) => (
-            <div key={activity.id} className="flex items-center space-x-4 p-3 rounded-lg hover:bg-muted/50 transition-smooth cursor-pointer">
-              <Avatar className="h-10 w-10">
+            <div key={activity.id} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg hover:bg-muted/50 transition-smooth cursor-pointer">
+              <Avatar className="h-10 w-10 flex-shrink-0">
                 <AvatarFallback className="bg-primary text-primary-foreground text-xs font-medium">
                   {getTypeIcon(activity.type)}
                 </AvatarFallback>
               </Avatar>
-              
-              <div className="flex-1 space-y-1">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium">{activity.title}</p>
+
+              <div className="flex-1 space-y-2 sm:space-y-1 min-w-0">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2">
+                  <p className="text-sm font-medium truncate">{activity.title}</p>
                   {activity.amount && (
                     <span className="text-sm font-semibold text-foreground">
                       {activity.amount}
                     </span>
                   )}
                 </div>
-                <div className="flex items-center justify-between">
-                  <p className="text-xs text-muted-foreground">{activity.customer}</p>
-                  <div className="flex items-center space-x-2">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <p className="text-xs text-muted-foreground truncate">{activity.customer}</p>
+                  <div className="flex flex-wrap items-center gap-2">
                     <Badge variant="outline" className={getStatusColor(activity.status)}>
                       {activity.status}
                     </Badge>
-                    <span className="text-xs text-muted-foreground">
+                    <span className="text-xs text-muted-foreground whitespace-nowrap">
                       {formatDistanceToNow(activity.timestamp, { addSuffix: true })}
                     </span>
                   </div>

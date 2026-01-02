@@ -448,7 +448,7 @@ export default function LPOs() {
                       {getStatusBadge(lpo.status)}
                     </TableCell>
                     <TableCell>
-                      <div className="flex items-center space-x-1">
+                      <div className="flex flex-wrap items-center gap-1">
                         <Button
                           variant="ghost"
                           size="sm"

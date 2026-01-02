@@ -61,21 +61,21 @@ export function QuickActions() {
       <CardHeader>
         <CardTitle className="text-lg font-semibold">Quick Actions</CardTitle>
       </CardHeader>
-      <CardContent className="grid gap-3 md:grid-cols-2 lg:grid-cols-1">
+      <CardContent className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-1">
         {quickActions.map((action) => (
           <Button
             key={action.title}
             variant={action.variant}
-            className="flex items-center justify-start space-x-3 h-auto p-4 text-left"
+            className="flex flex-col sm:flex-row items-start sm:items-center justify-start space-y-2 sm:space-y-0 sm:space-x-3 h-auto p-3 sm:p-4 text-left text-sm sm:text-base"
             asChild
           >
             <a href={action.href}>
-              <action.icon className="h-5 w-5" />
-              <div className="flex-1">
+              <action.icon className="h-5 w-5 flex-shrink-0" />
+              <div className="flex-1 min-w-0">
                 <div className="font-medium">{action.title}</div>
-                <div className="text-xs opacity-90">{action.description}</div>
+                <div className="text-xs opacity-90 line-clamp-1">{action.description}</div>
               </div>
-              <Plus className="h-4 w-4" />
+              <Plus className="h-4 w-4 flex-shrink-0 hidden sm:inline" />
             </a>
           </Button>
         ))}
