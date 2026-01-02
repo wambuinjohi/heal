@@ -312,8 +312,8 @@ const App = () => {
           {/* Customer Performance Optimizer - Database and customer performance optimization */}
           <Route path="/app/customer-performance-optimizer" element={<CustomerPerformanceOptimizerPage />} />
 
-
-
+          {/* Database Debug - Check tables and create users */}
+          <Route path="/debug/database" element={<DatabaseDebug />} />
 
           {/* 404 Page */}
           <Route path="*" element={<NotFound />} />
