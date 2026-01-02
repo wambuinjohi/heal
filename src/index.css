@@ -16,16 +16,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 10% 15%;
 
-    /* Primary - Medplus Green (#2BB673) */
-    --primary: 152 62% 44%;
+    /* Primary - Orange */
+    --primary: 30 100% 48%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 152 62% 39%;
-    --primary-light: 152 62% 92%;
+    --primary-hover: 30 100% 43%;
+    --primary-light: 30 100% 94%;
 
-    /* Secondary - Medplus Blue (#2DAAE1) */
-    --secondary: 197 74% 53%;
+    /* Secondary - Deep Orange */
+    --secondary: 24 95% 44%;
     --secondary-foreground: 0 0% 100%;
-    --secondary-hover: 197 74% 48%;
+    --secondary-hover: 24 95% 39%;
 
     /* Status Colors */
     --success: 140 50% 45%;
