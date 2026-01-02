@@ -14,8 +14,8 @@ export function PublicHeader({ currentPage }: PublicHeaderProps) {
 
   const productIconMap: { [key: string]: React.ReactNode } = {
     'Bandages, Tapes and Dressings': <Bandage size={24} className="text-red-500" />,
-    'Bottles and Containers': <Package size={24} className="text-blue-600" />,
-    'Catheters and Tubes': <Pipette size={24} className="text-purple-600" />,
+    'Bottles and Containers': <Package size={24} className="text-orange-600" />,
+    'Catheters and Tubes': <Pipette size={24} className="text-amber-600" />,
     'Cotton Wool': <Wind size={24} className="text-gray-500" />,
     'Diapers and Sanitary': <Baby size={24} className="text-pink-500" />,
     'Gloves': <Hand size={24} className="text-yellow-600" />,
