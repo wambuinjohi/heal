@@ -113,8 +113,8 @@ export const VariantImagesModal = ({
                   <button
                     key={idx}
                     onClick={() => setCurrentIndex(idx)}
-                    className={`relative rounded-lg overflow-hidden border-2 transition-all hover:border-blue-400 ${
-                      idx === currentIndex ? 'border-blue-600' : 'border-gray-300'
+                    className={`relative rounded-lg overflow-hidden border-2 transition-all hover:border-orange-400 ${
+                      idx === currentIndex ? 'border-orange-600' : 'border-gray-300'
                     }`}
                     title={img.altText || `Image ${idx + 1}`}
                   >
