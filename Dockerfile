@@ -13,10 +13,10 @@ RUN npm install
 # Copy source code
 COPY . .
 
-# Set environment variables for build
-ENV NEXT_PUBLIC_SUPABASE_URL=https://mfcdlqixqydyrcflkmag.supabase.co
-ENV NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=sb_publishable_oWKU3CCosDOn668-0zGQJQ_a7iQyD5T
-ENV DATABASE_URL=postgresql://postgres:Sirgeorge@12@db.mfcdlqixqydyrcflkmag.supabase.co:5432/postgres
+# Create .env file with build-time variables
+RUN echo "NEXT_PUBLIC_SUPABASE_URL=https://mfcdlqixqydyrcflkmag.supabase.co" > .env.production && \
+    echo "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=sb_publishable_oWKU3CCosDOn668-0zGQJQ_a7iQyD5T" >> .env.production && \
+    echo "DATABASE_URL=postgresql://postgres:Sirgeorge@12@db.mfcdlqixqydyrcflkmag.supabase.co:5432/postgres" >> .env.production
 
 # Build the app
 RUN npm run build
