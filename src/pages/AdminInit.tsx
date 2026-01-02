@@ -138,36 +138,73 @@ export default function AdminInit() {
           ) : (
             <div className="space-y-6">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h3 className="font-semibold text-blue-900 mb-3">📋 Setup Instructions</h3>
-                <p className="text-sm text-blue-800 mb-4">
-                  Run the setup script from your terminal to create the admin user:
-                </p>
+                <h3 className="font-semibold text-blue-900 mb-4">📋 Setup Instructions</h3>
 
-                <div className="bg-gray-900 rounded p-4 mb-4">
-                  <div className="flex items-center justify-between">
-                    <code className="text-green-400 font-mono text-sm">{setupCommand}</code>
-                    <button
-                      onClick={() => copyToClipboard(setupCommand)}
-                      className="text-gray-400 hover:text-gray-200 transition"
-                      title="Copy command"
-                    >
-                      {copied ? (
-                        <CheckCircle2 className="h-5 w-5 text-green-400" />
-                      ) : (
-                        <Copy className="h-5 w-5" />
-                      )}
-                    </button>
+                {creating && creationProgress.length > 0 && (
+                  <div className="mb-4 bg-white rounded p-4 border border-blue-300 space-y-2 max-h-48 overflow-y-auto">
+                    {creationProgress.map((message, index) => (
+                      <div key={index} className="text-sm text-blue-800 flex items-start gap-2">
+                        <span className="text-lg">→</span>
+                        <span>{message}</span>
+                      </div>
+                    ))}
                   </div>
+                )}
+
+                <div className="space-y-3 mb-4">
+                  <p className="text-sm text-blue-800 font-medium">Option 1: Auto Create (Recommended)</p>
+                  <Button
+                    onClick={autoCreateAdmin}
+                    disabled={creating}
+                    size="lg"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    {creating ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Creating Admin User...
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="mr-2 h-4 w-4" />
+                        Auto Create Admin User
+                      </>
+                    )}
+                  </Button>
                 </div>
 
-                <div className="text-sm text-blue-800 space-y-2">
-                  <p className="font-medium">Steps:</p>
-                  <ol className="list-decimal list-inside space-y-1 ml-2">
-                    <li>Open your terminal in the project directory</li>
-                    <li>Run <code className="bg-blue-100 px-2 py-1 rounded font-mono">chmod +x setup-admin.sh</code></li>
-                    <li>Run <code className="bg-blue-100 px-2 py-1 rounded font-mono">{setupCommand}</code></li>
-                    <li>The script will create the admin user automatically</li>
-                  </ol>
+                <div className="border-t border-blue-200 pt-4">
+                  <p className="text-sm text-blue-800 font-medium mb-3">Option 2: Manual Setup (Terminal)</p>
+                  <p className="text-sm text-blue-800 mb-3">
+                    Run the setup script from your terminal to create the admin user:
+                  </p>
+
+                  <div className="bg-gray-900 rounded p-4 mb-4">
+                    <div className="flex items-center justify-between">
+                      <code className="text-green-400 font-mono text-sm">{setupCommand}</code>
+                      <button
+                        onClick={() => copyToClipboard(setupCommand)}
+                        className="text-gray-400 hover:text-gray-200 transition"
+                        title="Copy command"
+                      >
+                        {copied ? (
+                          <CheckCircle2 className="h-5 w-5 text-green-400" />
+                        ) : (
+                          <Copy className="h-5 w-5" />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="text-sm text-blue-800 space-y-2">
+                    <p className="font-medium">Steps:</p>
+                    <ol className="list-decimal list-inside space-y-1 ml-2">
+                      <li>Open your terminal in the project directory</li>
+                      <li>Run <code className="bg-blue-100 px-2 py-1 rounded font-mono">chmod +x setup-admin.sh</code></li>
+                      <li>Run <code className="bg-blue-100 px-2 py-1 rounded font-mono">{setupCommand}</code></li>
+                      <li>The script will create the admin user automatically</li>
+                    </ol>
+                  </div>
                 </div>
               </div>
 
