@@ -97,7 +97,7 @@ export const VariantImagesModal = ({
 
           {/* Image Info */}
           {currentImage?.altText && (
-            <div className="bg-blue-50 border border-blue-200 rounded p-3">
+            <div className="bg-orange-50 border border-orange-200 rounded p-3">
               <p className="text-sm text-gray-700">
                 <span className="font-semibold">Alt Text:</span> {currentImage.altText}
               </p>
@@ -113,8 +113,8 @@ export const VariantImagesModal = ({
                   <button
                     key={idx}
                     onClick={() => setCurrentIndex(idx)}
-                    className={`relative rounded-lg overflow-hidden border-2 transition-all hover:border-blue-400 ${
-                      idx === currentIndex ? 'border-blue-600' : 'border-gray-300'
+                    className={`relative rounded-lg overflow-hidden border-2 transition-all hover:border-orange-400 ${
+                      idx === currentIndex ? 'border-orange-600' : 'border-gray-300'
                     }`}
                     title={img.altText || `Image ${idx + 1}`}
                   >
@@ -124,7 +124,7 @@ export const VariantImagesModal = ({
                       className="w-full h-full object-cover aspect-square"
                     />
                     {idx === currentIndex && (
-                      <div className="absolute inset-0 bg-blue-500/10"></div>
+                      <div className="absolute inset-0 bg-orange-500/10"></div>
                     )}
                   </button>
                 ))}

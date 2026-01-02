@@ -45,7 +45,7 @@ function getActionColor(action: string) {
     CREATE: 'bg-success-light text-success border-success/20',
     UPDATE: 'bg-primary-light text-primary border-primary/20',
     APPROVE: 'bg-warning-light text-warning border-warning/20',
-    INVITE: 'bg-blue-light text-blue border-blue/20',
+    INVITE: 'bg-primary-light text-primary border-primary/20',
   };
   return colors[action] || 'bg-muted text-muted-foreground border-muted-foreground/20';
 }

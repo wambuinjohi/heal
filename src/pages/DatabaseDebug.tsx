@@ -243,13 +243,13 @@ ${SQL_MIGRATION}`;
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-blue-50 p-4 rounded-lg">
+                <div className="bg-orange-50 p-4 rounded-lg">
                   <p className="text-sm text-gray-600">Tables Ready</p>
                   <p className={`text-2xl font-bold ${dbStatus.tablesReady ? 'text-green-600' : 'text-red-600'}`}>
                     {dbStatus.tablesReady ? '✅ Yes' : '❌ No'}
                   </p>
                 </div>
-                <div className="bg-purple-50 p-4 rounded-lg">
+                <div className="bg-amber-50 p-4 rounded-lg">
                   <p className="text-sm text-gray-600">Users Exist</p>
                   <p className={`text-2xl font-bold ${dbStatus.usersExist ? 'text-green-600' : 'text-orange-600'}`}>
                     {dbStatus.usersExist ? '✅ Yes' : '⏳ No'}
@@ -370,15 +370,15 @@ ${SQL_MIGRATION}`;
         )}
 
         {/* Setup Instructions */}
-        <Card className="bg-blue-50 border-blue-200">
+        <Card className="bg-orange-50 border-orange-200">
           <CardHeader>
-            <CardTitle className="text-blue-900">🔧 Setup Instructions</CardTitle>
+            <CardTitle className="text-orange-900">🔧 Setup Instructions</CardTitle>
           </CardHeader>
-          <CardContent className="text-sm text-blue-800 space-y-4">
+          <CardContent className="text-sm text-orange-800 space-y-4">
             <div>
               <p className="font-semibold mb-2">Step 1: Open Supabase SQL Editor</p>
               <ol className="list-decimal list-inside space-y-2 ml-2">
-                <li>Go to <a href="https://app.supabase.com" target="_blank" rel="noopener noreferrer" className="underline font-bold text-blue-600">Supabase Dashboard</a></li>
+                <li>Go to <a href="https://app.supabase.com" target="_blank" rel="noopener noreferrer" className="underline font-bold text-orange-600">Supabase Dashboard</a></li>
                 <li>Select your project (mfcdlqixqydyrcflkmag)</li>
                 <li>Click on <span className="bg-white px-2 py-1 rounded text-gray-800 font-semibold">SQL Editor</span> in the left menu</li>
                 <li>Click <span className="bg-white px-2 py-1 rounded text-gray-800 font-semibold">New Query</span></li>
@@ -388,17 +388,17 @@ ${SQL_MIGRATION}`;
             <div>
               <p className="font-semibold mb-2">Step 2: Copy and Run Migration SQL</p>
               <div className="space-y-2">
-                <div className="bg-white p-4 rounded border border-blue-200">
+                <div className="bg-white p-4 rounded border border-orange-200">
                   <p className="text-gray-600 mb-2 text-xs">📄 File: <span className="font-mono font-semibold">COMPREHENSIVE_DATABASE_MIGRATION.sql</span></p>
                   <p className="text-gray-700 mb-3">Complete database schema with all 26 tables</p>
                   <Button
                     onClick={handleCopySQL}
-                    className="bg-blue-600 hover:bg-blue-700 text-white w-full"
+                    className="bg-orange-600 hover:bg-orange-700 text-white w-full"
                   >
                     📋 Copy SQL to Clipboard
                   </Button>
                 </div>
-                <p className="text-xs text-blue-700 bg-blue-100 p-2 rounded">
+                <p className="text-xs text-orange-700 bg-orange-100 p-2 rounded">
                   The SQL file is located in your project root. Click the button above to copy it, then paste in Supabase SQL Editor.
                 </p>
               </div>

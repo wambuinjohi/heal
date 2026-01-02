@@ -39,9 +39,9 @@ const WebManager = () => {
       </Tabs>
 
       {/* Help Section */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-8">
-        <h3 className="font-semibold text-blue-900 mb-2">💡 Tips</h3>
-        <ul className="text-sm text-blue-800 space-y-1">
+      <div className="bg-orange-50 border border-orange-200 rounded-lg p-6 mt-8">
+        <h3 className="font-semibold text-orange-900 mb-2">💡 Tips</h3>
+        <ul className="text-sm text-orange-800 space-y-1">
           <li>• Categories are displayed on the public website's product menu</li>
           <li>• Variants represent individual products within each category</li>
           <li>• Use display order to arrange categories and variants</li>

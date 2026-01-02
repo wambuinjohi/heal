@@ -38,7 +38,7 @@ export const AuthPerformanceTest = () => {
 
   const getPerformanceRating = () => {
     const elapsed = parseFloat(getElapsedTime());
-    if (loading) return { label: 'Loading...', color: 'bg-blue-500', icon: Clock };
+    if (loading) return { label: 'Loading...', color: 'bg-orange-500', icon: Clock };
     if (elapsed <= 2) return { label: 'Excellent', color: 'bg-green-500', icon: CheckCircle };
     if (elapsed <= 4) return { label: 'Good', color: 'bg-yellow-500', icon: CheckCircle };
     return { label: 'Slow', color: 'bg-red-500', icon: AlertCircle };
@@ -75,7 +75,7 @@ export const AuthPerformanceTest = () => {
             <span className="text-muted-foreground">Status:</span>
             <div className="font-medium">
               {loading ? (
-                <span className="text-blue-600">Loading</span>
+                <span className="text-orange-600">Loading</span>
               ) : (
                 <span className="text-green-600">Ready</span>
               )}

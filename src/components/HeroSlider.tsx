@@ -64,8 +64,8 @@ export default function HeroSlider() {
               transform: `translateX(${(index - currentSlide) * 100}%)`
             }}
           >
-            {/* Gradient overlay - blue to green */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-green-500 opacity-40"></div>
+            {/* Gradient overlay - orange to amber */}
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-500 opacity-40"></div>
           </div>
         ))}
       </div>

@@ -360,7 +360,7 @@ export function AutoAdminSetup() {
 
   if (status.checking) {
     return (
-      <Alert className="bg-blue-50 border-blue-200">
+      <Alert className="bg-orange-50 border-orange-200">
         <Loader2 className="h-4 w-4 animate-spin" />
         <AlertDescription>
           Checking if admin user exists...

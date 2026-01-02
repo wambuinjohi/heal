@@ -260,7 +260,7 @@ export const LPOCustomerSupplierAudit = () => {
               </Alert>
 
               {/* Core Issue Explanation */}
-              <Alert className="border-blue-500 bg-blue-50">
+              <Alert className="border-orange-500 bg-orange-50">
                 <AlertCircle className="h-4 w-4" />
                 <AlertTitle>Data Model Issue Detected</AlertTitle>
                 <AlertDescription>
@@ -406,7 +406,7 @@ export const LPOCustomerSupplierAudit = () => {
               )}
 
               {/* Recommendations */}
-              <Alert className="border-blue-500 bg-blue-50">
+              <Alert className="border-orange-500 bg-orange-50">
                 <AlertCircle className="h-4 w-4" />
                 <AlertTitle>Recommended Solutions</AlertTitle>
                 <AlertDescription>

@@ -475,12 +475,12 @@ export const CreateLPOModal = ({
                   )}
 
                   {/* Create New Supplier Option */}
-                  <div className="px-2 py-1 text-xs font-semibold text-blue-600 bg-blue-50 border-b border-t">
+                  <div className="px-2 py-1 text-xs font-semibold text-orange-600 bg-orange-50 border-b border-t">
                     ➕ Add New Supplier
                   </div>
                   <SelectItem value="__create_new__">
                     <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
                       Create New Supplier...
                     </div>
                   </SelectItem>
@@ -537,10 +537,10 @@ export const CreateLPOModal = ({
 
                     if (isDataModelNotice) {
                       return (
-                        <Alert key={index} className="border-blue-300 bg-blue-50">
-                          <AlertTriangle className="h-4 w-4 text-blue-600" />
-                          <AlertTitle className="text-blue-800">ℹ️ System Information</AlertTitle>
-                          <AlertDescription className="text-sm text-blue-700">
+                        <Alert key={index} className="border-orange-300 bg-orange-50">
+                          <AlertTriangle className="h-4 w-4 text-orange-600" />
+                          <AlertTitle className="text-orange-800">ℹ️ System Information</AlertTitle>
+                          <AlertDescription className="text-sm text-orange-700">
                             {warning}
                           </AlertDescription>
                         </Alert>
@@ -610,9 +610,9 @@ export const CreateLPOModal = ({
 
           {/* Create New Supplier Form */}
           {showCreateSupplier && (
-            <Card className="border-blue-500 bg-blue-50">
+            <Card className="border-orange-500 bg-orange-50">
               <CardHeader>
-                <CardTitle className="flex items-center justify-between text-blue-700">
+                <CardTitle className="flex items-center justify-between text-orange-700">
                   <span className="flex items-center gap-2">
                     <User className="h-4 w-4" />
                     Create New Supplier

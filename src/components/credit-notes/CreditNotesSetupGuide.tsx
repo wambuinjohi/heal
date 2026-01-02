@@ -88,7 +88,7 @@ export function CreditNotesSetupGuide() {
       {/* Header */}
       <div className="text-center space-y-2">
         <h2 className="text-2xl font-bold flex items-center justify-center gap-2">
-          <CreditCard className="h-6 w-6 text-blue-500" />
+          <CreditCard className="h-6 w-6 text-orange-500" />
           Credit Notes Setup
         </h2>
         <p className="text-muted-foreground">
@@ -173,22 +173,22 @@ export function CreditNotesSetupGuide() {
             </div>
             
             <div className="space-y-3">
-              <h4 className="font-semibold text-blue-700">🚀 Advanced Features</h4>
+              <h4 className="font-semibold text-orange-700">🚀 Advanced Features</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-center gap-2">
-                  <ArrowRightLeft className="h-4 w-4 text-blue-500" />
+                  <ArrowRightLeft className="h-4 w-4 text-orange-500" />
                   Credit application to multiple invoices
                 </li>
                 <li className="flex items-center gap-2">
-                  <DollarSign className="h-4 w-4 text-blue-500" />
+                  <DollarSign className="h-4 w-4 text-orange-500" />
                   Automatic balance calculations
                 </li>
                 <li className="flex items-center gap-2">
-                  <Database className="h-4 w-4 text-blue-500" />
+                  <Database className="h-4 w-4 text-orange-500" />
                   Inventory impact tracking
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-blue-500" />
+                  <CheckCircle className="h-4 w-4 text-orange-500" />
                   Complete audit trail
                 </li>
               </ul>

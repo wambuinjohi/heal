@@ -747,20 +747,20 @@ export function CreateInvoiceModal({ open, onOpenChange, onSuccess, preSelectedC
 
         {/* Progress Indicator */}
         {submitProgress && (
-          <Card className="bg-blue-50 border-blue-200">
+          <Card className="bg-orange-50 border-orange-200">
             <CardContent className="pt-6">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-blue-900">
+                  <span className="text-sm font-medium text-orange-900">
                     {submitProgress.step}
                   </span>
-                  <span className="text-xs text-blue-700">
+                  <span className="text-xs text-orange-700">
                     {submitProgress.current} of {submitProgress.total}
                   </span>
                 </div>
-                <div className="w-full bg-blue-200 rounded-full h-2">
+                <div className="w-full bg-orange-200 rounded-full h-2">
                   <div
-                    className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                    className="bg-orange-600 h-2 rounded-full transition-all duration-300"
                     style={{ width: `${(submitProgress.current / submitProgress.total) * 100}%` }}
                   />
                 </div>

@@ -11,7 +11,7 @@ export default function CustomerPerformanceOptimizerPage() {
       <Card className="mb-6">
         <CardHeader className="text-center">
           <CardTitle className="flex items-center justify-center gap-2 text-3xl">
-            <Users className="h-8 w-8 text-blue-500" />
+            <Users className="h-8 w-8 text-orange-500" />
             Customer Performance Center
           </CardTitle>
           <CardDescription className="text-lg">
@@ -19,16 +19,16 @@ export default function CustomerPerformanceOptimizerPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="bg-blue-50 p-6 rounded-lg mb-6">
+          <div className="bg-orange-50 p-6 rounded-lg mb-6">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-0.5" />
+              <AlertTriangle className="h-6 w-6 text-orange-600 flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-semibold text-blue-900 mb-2">Customer Performance Issues Detected</h3>
-                <p className="text-blue-800 mb-3">
-                  Your customer page is loading slowly because it's fetching all customers at once without 
+                <h3 className="font-semibold text-orange-900 mb-2">Customer Performance Issues Detected</h3>
+                <p className="text-orange-800 mb-3">
+                  Your customer page is loading slowly because it's fetching all customers at once without
                   proper database indexes or pagination. This affects search performance and user experience.
                 </p>
-                <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-700">
+                <div className="grid md:grid-cols-2 gap-4 text-sm text-orange-700">
                   <div>
                     <h4 className="font-medium mb-1">Current problems:</h4>
                     <ul className="space-y-0.5">

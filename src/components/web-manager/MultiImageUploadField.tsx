@@ -134,15 +134,15 @@ export const MultiImageUploadField = ({
                 onDragEnd={handleDragEnd}
                 className={`flex gap-3 p-3 border-2 rounded-lg items-start transition-all ${
                   draggedIndex === index
-                    ? 'bg-blue-200 border-blue-400 shadow-md'
-                    : 'bg-white border-blue-200 hover:border-blue-300'
+                    ? 'bg-orange-200 border-orange-400 shadow-md'
+                    : 'bg-white border-orange-200 hover:border-orange-300'
                 }`}
               >
                 {/* Drag Handle */}
                 {images.length > 1 && (
                   <button
                     type="button"
-                    className="mt-1 flex-shrink-0 cursor-grab active:cursor-grabbing text-gray-400 hover:text-blue-600 transition-colors"
+                    className="mt-1 flex-shrink-0 cursor-grab active:cursor-grabbing text-gray-400 hover:text-orange-600 transition-colors"
                     title="Drag to reorder"
                   >
                     <GripVertical size={18} />

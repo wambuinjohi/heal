@@ -52,7 +52,7 @@ export default function ProductCategorySidebar({
       >
         <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
           {/* Sidebar Header */}
-          <div className="hidden md:block px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-green-50">
+          <div className="hidden md:block px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-orange-50 to-amber-50">
             <h3 className="font-bold text-gray-900 text-lg">Product Categories</h3>
           </div>
 
@@ -68,7 +68,7 @@ export default function ProductCategorySidebar({
                   onClick={() => setIsOpen(false)}
                   className={`block px-6 py-4 transition-all duration-200 relative group ${
                     isActive
-                      ? 'bg-blue-50 text-primary font-semibold border-l-4 border-primary'
+                      ? 'bg-orange-50 text-primary font-semibold border-l-4 border-primary'
                       : 'text-gray-700 hover:bg-gray-50 border-l-4 border-transparent hover:border-primary/50'
                   }`}
                 >

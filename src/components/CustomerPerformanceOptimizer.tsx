@@ -104,7 +104,7 @@ export function CustomerPerformanceOptimizer() {
       {/* Header */}
       <div className="text-center space-y-2">
         <h2 className="text-2xl font-bold flex items-center justify-center gap-2">
-          <Users className="h-6 w-6 text-blue-500" />
+          <Users className="h-6 w-6 text-orange-500" />
           Customer Performance Optimizer
         </h2>
         <p className="text-muted-foreground">
@@ -187,7 +187,7 @@ export function CustomerPerformanceOptimizer() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-blue-500" />
+            <TrendingUp className="h-5 w-5 text-orange-500" />
             Expected Performance Improvements
           </CardTitle>
         </CardHeader>
@@ -198,9 +198,9 @@ export function CustomerPerformanceOptimizer() {
               <p className="text-2xl font-bold text-green-600 mt-2">5-10x</p>
               <p className="text-sm text-green-600">faster with indexes</p>
             </div>
-            <div className="text-center p-4 bg-blue-50 rounded-lg">
-              <h4 className="font-semibold text-blue-700">Search Speed</h4>
-              <p className="text-2xl font-bold text-blue-600 mt-2">15x</p>
+            <div className="text-center p-4 bg-orange-50 rounded-lg">
+              <h4 className="font-semibold text-orange-700">Search Speed</h4>
+              <p className="text-2xl font-bold text-orange-600 mt-2">15x</p>
               <p className="text-sm text-blue-600">faster name/email search</p>
             </div>
             <div className="text-center p-4 bg-purple-50 rounded-lg">

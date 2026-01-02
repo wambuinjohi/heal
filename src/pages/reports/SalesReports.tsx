@@ -524,10 +524,10 @@ export default function SalesReports() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center space-x-2">
-              <ShoppingCart className="h-8 w-8 text-blue-500" />
+              <ShoppingCart className="h-8 w-8 text-orange-500" />
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Total Invoices</p>
-                <p className="text-lg font-bold text-blue-500">{stats.totalInvoices}</p>
+                <p className="text-lg font-bold text-orange-500">{stats.totalInvoices}</p>
                 <p className="text-xs text-muted-foreground">All time</p>
               </div>
             </div>

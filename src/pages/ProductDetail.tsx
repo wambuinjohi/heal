@@ -404,11 +404,11 @@ export default function ProductDetail() {
 
           <form className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 space-y-6 scroll-smooth" style={{ scrollBehavior: 'auto' }}>
             {/* Product Display */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p className="text-sm text-blue-600 font-semibold">Product Category</p>
-              <p className="text-lg text-blue-900 font-bold">{category?.name}</p>
-              <p className="text-sm text-blue-700 mt-2">Variant: {variant?.name}</p>
-              <p className="text-sm text-blue-600">SKU: {variant?.sku}</p>
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+              <p className="text-sm text-orange-600 font-semibold">Product Category</p>
+              <p className="text-lg text-orange-900 font-bold">{category?.name}</p>
+              <p className="text-sm text-orange-700 mt-2">Variant: {variant?.name}</p>
+              <p className="text-sm text-orange-600">SKU: {variant?.sku}</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">

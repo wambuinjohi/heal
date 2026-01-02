@@ -19,12 +19,12 @@ export default function PerformanceOptimizerPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="bg-blue-50 p-6 rounded-lg mb-6">
-            <h3 className="font-semibold text-blue-900 mb-3">🚀 Performance Solutions Available:</h3>
+          <div className="bg-orange-50 p-6 rounded-lg mb-6">
+            <h3 className="font-semibold text-orange-900 mb-3">🚀 Performance Solutions Available:</h3>
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <h4 className="font-medium text-blue-800 mb-2">Database Optimization:</h4>
-                <ul className="text-sm text-blue-700 space-y-1">
+                <h4 className="font-medium text-orange-800 mb-2">Database Optimization:</h4>
+                <ul className="text-sm text-orange-700 space-y-1">
                   <li>• Create performance indexes for faster queries</li>
                   <li>• Optimize JOIN operations with categories</li>
                   <li>• Enable trigram search for better text filtering</li>
@@ -32,8 +32,8 @@ export default function PerformanceOptimizerPage() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-medium text-blue-800 mb-2">Application Optimization:</h4>
-                <ul className="text-sm text-blue-700 space-y-1">
+                <h4 className="font-medium text-orange-800 mb-2">Application Optimization:</h4>
+                <ul className="text-sm text-orange-700 space-y-1">
                   <li>• Implement pagination (20 items per page)</li>
                   <li>• Add React component memoization</li>
                   <li>• Optimize data transformations and calculations</li>
@@ -44,7 +44,7 @@ export default function PerformanceOptimizerPage() {
             
             <div className="mt-4 flex items-center justify-center gap-4">
               <Link to="/optimized-inventory">
-                <Button className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600">
+                <Button className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600">
                   Try Optimized Inventory
                   <ArrowRight className="h-4 w-4" />
                 </Button>
