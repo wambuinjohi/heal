@@ -26,10 +26,13 @@ function getSupabaseClient() {
   }
 
   if (isMissingConfig) {
-    console.error('❌ Cannot initialize Supabase: Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY');
-    // Return a mock client that allows the app to continue running
-    return createMockClient();
-  }
+  console.error('❌ Cannot initialize Supabase: Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY');
+  console.error('   Required environment variables:');
+  console.error('   - VITE_SUPABASE_URL (your Supabase project URL)');
+  console.error('   - VITE_SUPABASE_ANON_KEY (your Supabase publishable/anon key)');
+  // Return a mock client that allows the app to continue running
+  return createMockClient();
+}
 
   console.log('✅ Supabase client initializing with URL:', SUPABASE_URL!.substring(0, 30) + '...');
 
