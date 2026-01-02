@@ -473,9 +473,9 @@ export default function Customers() {
                       </Badge>
                     </TableCell>
                     <TableCell className="text-right">
-                      <div className="flex items-center justify-end space-x-1">
+                      <div className="flex flex-wrap items-center justify-end gap-1">
                         {/* Icon Actions */}
-                        <div className="flex space-x-1">
+                        <div className="flex gap-1">
                           <Button
                             variant="ghost"
                             size="icon"
@@ -515,7 +515,7 @@ export default function Customers() {
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex space-x-2 ml-2 border-l pl-2">
+                        <div className="flex flex-wrap gap-2">
                           <Button
                             variant="outline"
                             size="sm"
