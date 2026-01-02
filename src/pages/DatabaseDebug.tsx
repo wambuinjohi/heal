@@ -388,17 +388,17 @@ ${SQL_MIGRATION}`;
             <div>
               <p className="font-semibold mb-2">Step 2: Copy and Run Migration SQL</p>
               <div className="space-y-2">
-                <div className="bg-white p-4 rounded border border-blue-200">
+                <div className="bg-white p-4 rounded border border-orange-200">
                   <p className="text-gray-600 mb-2 text-xs">📄 File: <span className="font-mono font-semibold">COMPREHENSIVE_DATABASE_MIGRATION.sql</span></p>
                   <p className="text-gray-700 mb-3">Complete database schema with all 26 tables</p>
                   <Button
                     onClick={handleCopySQL}
-                    className="bg-blue-600 hover:bg-blue-700 text-white w-full"
+                    className="bg-orange-600 hover:bg-orange-700 text-white w-full"
                   >
                     📋 Copy SQL to Clipboard
                   </Button>
                 </div>
-                <p className="text-xs text-blue-700 bg-blue-100 p-2 rounded">
+                <p className="text-xs text-orange-700 bg-orange-100 p-2 rounded">
                   The SQL file is located in your project root. Click the button above to copy it, then paste in Supabase SQL Editor.
                 </p>
               </div>
