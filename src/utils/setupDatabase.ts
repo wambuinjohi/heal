@@ -343,9 +343,9 @@ export async function setupDatabase() {
 
     // Step 3: Verify tables exist
     console.log('🔍 Verifying table creation...');
-    const tablesToCheck = ['profiles', 'companies', 'customers', 'products', 'quotations', 'invoices', 'units_of_measure', 'payment_methods'];
+    const tablesToCheck = ['profiles', 'companies', 'customers', 'products', 'quotations', 'invoices', 'units_of_measure', 'payment_methods', 'audit_logs'];
     let tablesExist = 0;
-    
+
     for (const table of tablesToCheck) {
       try {
         const { error } = await supabase.from(table).select('id').limit(1);
@@ -356,9 +356,9 @@ export async function setupDatabase() {
         console.warn(`Table ${table} verification failed:`, err);
       }
     }
-    
-    results.steps.push({ 
-      step: `Verify tables (${tablesExist}/${tablesToCheck.length} working)`, 
+
+    results.steps.push({
+      step: `Verify tables (${tablesExist}/${tablesToCheck.length} working)`,
       success: tablesExist >= 2 // At least profiles and companies should work
     });
 
