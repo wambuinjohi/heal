@@ -10,6 +10,130 @@ import {
   checkUsersExist
 } from '@/utils/databaseTableChecker';
 
+// SQL Migration content
+const SQL_MIGRATION = `-- Enable required extensions
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+-- User role enumeration
+DO $$ BEGIN
+    CREATE TYPE user_role AS ENUM ('admin', 'accountant', 'stock_manager', 'user');
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;
+
+-- User status enumeration
+DO $$ BEGIN
+    CREATE TYPE user_status AS ENUM ('active', 'inactive', 'pending');
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;
+
+-- Document status enumeration
+DO $$ BEGIN
+    CREATE TYPE document_status AS ENUM ('draft', 'pending', 'approved', 'sent', 'paid', 'partial', 'overdue', 'cancelled', 'expired', 'accepted', 'rejected', 'converted');
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;
+
+-- LPO status enumeration
+DO $$ BEGIN
+    CREATE TYPE lpo_status AS ENUM ('draft', 'sent', 'approved', 'received', 'cancelled');
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;
+
+-- Companies table (Multi-tenant support)
+CREATE TABLE IF NOT EXISTS companies (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name VARCHAR(255) NOT NULL,
+    registration_number VARCHAR(100),
+    tax_number VARCHAR(100),
+    email VARCHAR(255),
+    phone VARCHAR(50),
+    address TEXT,
+    city VARCHAR(100),
+    state VARCHAR(100),
+    postal_code VARCHAR(20),
+    country VARCHAR(100) DEFAULT 'Kenya',
+    logo_url TEXT,
+    currency VARCHAR(3) DEFAULT 'KES',
+    fiscal_year_start INTEGER DEFAULT 1,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Profiles table (extends Supabase auth.users)
+CREATE TABLE IF NOT EXISTS profiles (
+    id UUID REFERENCES auth.users(id) ON DELETE CASCADE PRIMARY KEY,
+    email TEXT NOT NULL,
+    full_name TEXT,
+    avatar_url TEXT,
+    role user_role DEFAULT 'user',
+    status user_status DEFAULT 'pending',
+    phone TEXT,
+    company_id UUID REFERENCES companies(id) ON DELETE SET NULL,
+    department TEXT,
+    position TEXT,
+    invited_by UUID REFERENCES auth.users(id) ON DELETE SET NULL,
+    invited_at TIMESTAMP WITH TIME ZONE,
+    last_login TIMESTAMP WITH TIME ZONE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- User permissions table
+CREATE TABLE IF NOT EXISTS user_permissions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+    permission_name TEXT NOT NULL,
+    granted BOOLEAN DEFAULT TRUE,
+    granted_by UUID REFERENCES auth.users(id) ON DELETE SET NULL,
+    granted_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    UNIQUE(user_id, permission_name)
+);
+
+-- User invitations table
+CREATE TABLE IF NOT EXISTS user_invitations (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email TEXT NOT NULL,
+    role user_role NOT NULL,
+    company_id UUID REFERENCES companies(id) ON DELETE CASCADE,
+    invited_by UUID REFERENCES auth.users(id) ON DELETE SET NULL,
+    invited_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    expires_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() + INTERVAL '7 days',
+    accepted_at TIMESTAMP WITH TIME ZONE,
+    status VARCHAR(20) DEFAULT 'pending',
+    invitation_token VARCHAR(255) UNIQUE,
+    is_approved BOOLEAN DEFAULT FALSE,
+    approved_by UUID,
+    approved_at TIMESTAMP WITH TIME ZONE
+);
+
+-- Customers table
+CREATE TABLE IF NOT EXISTS customers (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    company_id UUID REFERENCES companies(id) ON DELETE CASCADE,
+    customer_code VARCHAR(50),
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255),
+    phone VARCHAR(50),
+    address TEXT,
+    city VARCHAR(100),
+    state VARCHAR(100),
+    postal_code VARCHAR(20),
+    country VARCHAR(100) DEFAULT 'Kenya',
+    tax_number VARCHAR(100),
+    credit_limit DECIMAL(15,2) DEFAULT 0,
+    payment_terms INTEGER DEFAULT 30,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- NOTE: Rest of tables (invoices, payments, products, etc.) are created in the full SQL file
+-- Please download and run: COMPREHENSIVE_DATABASE_MIGRATION.sql`;
+
 export default function DatabaseDebug() {
   const [tableStatus, setTableStatus] = useState<any>(null);
   const [dbStatus, setDbStatus] = useState<any>(null);
