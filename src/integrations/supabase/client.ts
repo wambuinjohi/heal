@@ -34,7 +34,7 @@ function getSupabaseClient() {
   return createMockClient();
 }
 
-  console.log('✅ Supabase client initializing with URL:', SUPABASE_URL!.substring(0, 30) + '...');
+  console.log('✅ Supabase client initialized with URL:', SUPABASE_URL!.substring(0, 30) + '...');
 
   supabaseInstance = createClient<Database>(SUPABASE_URL!, SUPABASE_PUBLISHABLE_KEY!, {
     auth: {
