@@ -94,7 +94,7 @@ export default function SupabaseTest() {
     <div className="container mx-auto p-6 space-y-6">
       <div className="text-center space-y-2">
         <h1 className="text-3xl font-bold flex items-center justify-center gap-2">
-          <Database className="h-8 w-8 text-blue-500" />
+          <Database className="h-8 w-8 text-orange-500" />
           Supabase Connection Test
         </h1>
         <p className="text-muted-foreground">
