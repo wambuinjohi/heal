@@ -63,9 +63,9 @@
     --sidebar-border: 24 35% 18%;
     --sidebar-ring: 30 100% 48%;
 
-    /* Medplus Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(152 62% 44%), hsl(197 74% 53%));
-    --gradient-secondary: linear-gradient(135deg, hsl(210 5% 96%), hsl(210 5% 92%));
+    /* Orange Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(30 100% 48%), hsl(24 95% 44%));
+    --gradient-secondary: linear-gradient(135deg, hsl(30 5% 96%), hsl(30 5% 92%));
     --gradient-success: linear-gradient(135deg, hsl(140 50% 45%), hsl(140 50% 50%));
     
     /* Professional Shadows */
