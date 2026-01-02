@@ -46,15 +46,8 @@ const App = () => {
       <Sonner />
       <Layout>
         <Routes>
-          {/* Public Website Pages */}
-          <Route path="/" element={<Landing />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/products" element={<OurProducts />} />
-          <Route path="/products/:productSlug" element={<ProductDetail />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/media" element={<Media />} />
-          <Route path="/offers" element={<Offers />} />
-          <Route path="/sitemap.xml" element={<Sitemap />} />
+          {/* Redirect root to app dashboard */}
+          <Route path="/" element={<Navigate to="/app" replace />} />
 
           {/* App Routes - Protected */}
           {/* Dashboard */}
