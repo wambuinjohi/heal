@@ -610,9 +610,9 @@ export const CreateLPOModal = ({
 
           {/* Create New Supplier Form */}
           {showCreateSupplier && (
-            <Card className="border-blue-500 bg-blue-50">
+            <Card className="border-orange-500 bg-orange-50">
               <CardHeader>
-                <CardTitle className="flex items-center justify-between text-blue-700">
+                <CardTitle className="flex items-center justify-between text-orange-700">
                   <span className="flex items-center gap-2">
                     <User className="h-4 w-4" />
                     Create New Supplier
