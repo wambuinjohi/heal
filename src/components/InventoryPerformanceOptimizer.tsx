@@ -194,13 +194,13 @@ export function InventoryPerformanceOptimizer() {
               <p className="text-2xl font-bold text-green-600 mt-2">5-10x</p>
               <p className="text-sm text-green-600">faster with indexes</p>
             </div>
-            <div className="text-center p-4 bg-blue-50 rounded-lg">
-              <h4 className="font-semibold text-blue-700">Page Load Time</h4>
-              <p className="text-2xl font-bold text-blue-600 mt-2">2-3x</p>
-              <p className="text-sm text-blue-600">faster with pagination</p>
+            <div className="text-center p-4 bg-orange-50 rounded-lg">
+              <h4 className="font-semibold text-orange-700">Page Load Time</h4>
+              <p className="text-2xl font-bold text-orange-600 mt-2">2-3x</p>
+              <p className="text-sm text-orange-600">faster with pagination</p>
             </div>
-            <div className="text-center p-4 bg-purple-50 rounded-lg">
-              <h4 className="font-semibold text-purple-700">User Experience</h4>
+            <div className="text-center p-4 bg-amber-50 rounded-lg">
+              <h4 className="font-semibold text-amber-700">User Experience</h4>
               <p className="text-2xl font-bold text-purple-600 mt-2">Much</p>
               <p className="text-sm text-purple-600">more responsive</p>
             </div>
