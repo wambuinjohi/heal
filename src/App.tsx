@@ -33,6 +33,7 @@ import CustomerPerformanceOptimizerPage from "./pages/CustomerPerformanceOptimiz
 import SetupAndTest from "./components/SetupAndTest";
 import AuthTest from "./components/AuthTest";
 import DatabaseDebug from "./pages/DatabaseDebug";
+import AdminInit from "./pages/AdminInit";
 
 const App = () => {
 
@@ -46,6 +47,9 @@ const App = () => {
       <Toaster />
       <Sonner />
       <Routes>
+        {/* Admin initialization route - Accessible without authentication */}
+        <Route path="/admin-init" element={<AdminInit />} />
+
         {/* Debug routes - Accessible without authentication */}
         <Route path="/debug/database" element={<DatabaseDebug />} />
 
