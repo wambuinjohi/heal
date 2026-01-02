@@ -372,62 +372,56 @@ ${SQL_MIGRATION}`;
         {/* Setup Instructions */}
         <Card className="bg-blue-50 border-blue-200">
           <CardHeader>
-            <CardTitle className="text-blue-900">Setup Instructions</CardTitle>
+            <CardTitle className="text-blue-900">🔧 Setup Instructions</CardTitle>
           </CardHeader>
           <CardContent className="text-sm text-blue-800 space-y-4">
             <div>
-              <p className="font-semibold mb-2">1. Setup Database Schema</p>
-              <ol className="list-decimal list-inside space-y-1 ml-2">
-                <li>Go to <a href="https://app.supabase.com" target="_blank" rel="noopener noreferrer" className="underline font-semibold">Supabase Dashboard</a></li>
-                <li>Select your project</li>
-                <li>Go to <span className="bg-white px-2 py-1 rounded text-gray-800">SQL Editor</span></li>
-                <li>Click <span className="bg-white px-2 py-1 rounded text-gray-800">New Query</span></li>
-                <li>Copy the SQL script below and paste it</li>
-                <li>Click <span className="bg-white px-2 py-1 rounded text-gray-800">Run</span></li>
+              <p className="font-semibold mb-2">Step 1: Open Supabase SQL Editor</p>
+              <ol className="list-decimal list-inside space-y-2 ml-2">
+                <li>Go to <a href="https://app.supabase.com" target="_blank" rel="noopener noreferrer" className="underline font-bold text-blue-600">Supabase Dashboard</a></li>
+                <li>Select your project (mfcdlqixqydyrcflkmag)</li>
+                <li>Click on <span className="bg-white px-2 py-1 rounded text-gray-800 font-semibold">SQL Editor</span> in the left menu</li>
+                <li>Click <span className="bg-white px-2 py-1 rounded text-gray-800 font-semibold">New Query</span></li>
               </ol>
             </div>
-            <div className="bg-white p-4 rounded border border-blue-200 max-h-64 overflow-y-auto font-mono text-xs">
-              <div className="mb-2 text-blue-600">-- File: COMPREHENSIVE_DATABASE_MIGRATION.sql</div>
-              <div className="text-gray-700">
-                <div>-- Enable required extensions</div>
-                <div>CREATE EXTENSION IF NOT EXISTS "uuid-ossp";</div>
-                <div>CREATE EXTENSION IF NOT EXISTS pgcrypto;</div>
-                <div className="my-2 text-gray-500">-- ... (see full SQL below) ...</div>
-                <div className="text-blue-600 mt-2">
-                  📄 <a
-                    href="https://github.com/yourusername/yourrepo/blob/main/COMPREHENSIVE_DATABASE_MIGRATION.sql"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline"
+
+            <div>
+              <p className="font-semibold mb-2">Step 2: Copy and Run Migration SQL</p>
+              <div className="space-y-2">
+                <div className="bg-white p-4 rounded border border-blue-200">
+                  <p className="text-gray-600 mb-2 text-xs">📄 File: <span className="font-mono font-semibold">COMPREHENSIVE_DATABASE_MIGRATION.sql</span></p>
+                  <p className="text-gray-700 mb-3">Complete database schema with all 26 tables</p>
+                  <Button
+                    onClick={handleCopySQL}
+                    className="bg-blue-600 hover:bg-blue-700 text-white w-full"
                   >
-                    View Full SQL File
-                  </a>
-                  {' or copy from the project root'}
+                    📋 Copy SQL to Clipboard
+                  </Button>
                 </div>
+                <p className="text-xs text-blue-700 bg-blue-100 p-2 rounded">
+                  The SQL file is located in your project root. Click the button above to copy it, then paste in Supabase SQL Editor.
+                </p>
               </div>
             </div>
-            <div>
-              <p className="font-semibold mb-2">2. Create Test User</p>
-              <p>Once tables are ready, use the form above to create your first admin user.</p>
-            </div>
-            <div>
-              <p className="font-semibold mb-2">3. Sign In</p>
-              <p>Go back to login and use your test user credentials.</p>
-            </div>
-          </CardContent>
-        </Card>
 
-        {/* File Location Info */}
-        <Card className="bg-green-50 border-green-200">
-          <CardHeader>
-            <CardTitle className="text-green-900">📁 SQL File Location</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm text-green-800 space-y-2">
-            <p className="font-mono bg-white p-2 rounded">COMPREHENSIVE_DATABASE_MIGRATION.sql</p>
-            <p>This file is in your project root directory and contains the complete database schema with all 26 tables.</p>
-            <p className="text-xs text-green-700 mt-2">
-              If you can't find it in your file browser, download the project as a ZIP and extract it.
-            </p>
+            <div>
+              <p className="font-semibold mb-2">Step 3: Run the SQL</p>
+              <ol className="list-decimal list-inside space-y-1 ml-2">
+                <li>Paste the SQL into the SQL Editor</li>
+                <li>Click the <span className="bg-white px-2 py-1 rounded text-gray-800">Run</span> button (or Ctrl+Enter)</li>
+                <li>Wait for it to complete (should take a few seconds)</li>
+              </ol>
+            </div>
+
+            <div>
+              <p className="font-semibold mb-2">Step 4: Create Test User</p>
+              <p>After tables are created, refresh this page and use the form above to create your first admin user.</p>
+            </div>
+
+            <div>
+              <p className="font-semibold mb-2">Step 5: Sign In</p>
+              <p>Go back to the login page and use your test credentials.</p>
+            </div>
           </CardContent>
         </Card>
       </div>
