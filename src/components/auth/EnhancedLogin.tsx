@@ -57,7 +57,7 @@ export function EnhancedLogin() {
         }, 2000);
       }
     } else {
-      toast.success('Welcome to Medplus Africa!');
+      toast.success('Welcome to >> Medical Supplies!');
       navigate('/app');
     }
     setSubmitting(false);
