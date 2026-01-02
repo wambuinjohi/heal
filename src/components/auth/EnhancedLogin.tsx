@@ -180,7 +180,7 @@ export function EnhancedLogin() {
               <div className="space-y-2 sm:space-y-3 pt-3 sm:pt-4">
                 <Button
                   type="submit"
-                  className="w-full py-2 sm:py-3 text-base sm:text-lg font-bold bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 rounded-lg"
+                  className="w-full py-2 sm:py-3 text-base sm:text-lg font-bold bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 rounded-lg"
                   disabled={submitting}
                 >
                   {submitting ? (
