@@ -68,7 +68,7 @@ export default function ProductCategorySidebar({
                   onClick={() => setIsOpen(false)}
                   className={`block px-6 py-4 transition-all duration-200 relative group ${
                     isActive
-                      ? 'bg-blue-50 text-primary font-semibold border-l-4 border-primary'
+                      ? 'bg-orange-50 text-primary font-semibold border-l-4 border-primary'
                       : 'text-gray-700 hover:bg-gray-50 border-l-4 border-transparent hover:border-primary/50'
                   }`}
                 >
