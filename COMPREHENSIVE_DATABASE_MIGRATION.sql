@@ -924,7 +924,7 @@ CREATE OR REPLACE FUNCTION record_payment_with_allocation(
     p_payment_number VARCHAR(50),
     p_payment_date DATE,
     p_amount DECIMAL(15,2),
-    p_payment_method payment_method,
+    p_payment_method VARCHAR(50),
     p_reference_number VARCHAR(100),
     p_notes TEXT
 )

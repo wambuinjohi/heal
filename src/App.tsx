@@ -32,6 +32,7 @@ import OptimizedCustomers from "./pages/OptimizedCustomers";
 import CustomerPerformanceOptimizerPage from "./pages/CustomerPerformanceOptimizerPage";
 import SetupAndTest from "./components/SetupAndTest";
 import AuthTest from "./components/AuthTest";
+import DatabaseDebug from "./pages/DatabaseDebug";
 
 const App = () => {
 
@@ -44,280 +45,285 @@ const App = () => {
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <Layout>
-        <Routes>
-          {/* Redirect root to app dashboard */}
-          <Route path="/" element={<Navigate to="/app" replace />} />
+      <Routes>
+        {/* Debug routes - Accessible without authentication */}
+        <Route path="/debug/database" element={<DatabaseDebug />} />
 
-          {/* App Routes - Protected */}
-          {/* Dashboard */}
-          <Route
-            path="/app"
-            element={
-              <ProtectedRoute>
-                <Index />
-              </ProtectedRoute>
-            }
-          />
+        {/* All other routes wrapped in Layout */}
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <Routes>
+                {/* Redirect root to app dashboard */}
+                <Route path="/" element={<Navigate to="/app" replace />} />
 
-          {/* Sales & Customer Management */}
-          <Route
-            path="/app/quotations"
-            element={
-              <ProtectedRoute>
-                <Quotations />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/quotations/new"
-            element={
-              <ProtectedRoute>
-                <Quotations />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/customers"
-            element={
-              <ProtectedRoute>
-                <Customers />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/customers/new"
-            element={
-              <ProtectedRoute>
-                <Customers />
-              </ProtectedRoute>
-            }
-          />
+                {/* App Routes - Protected */}
+                {/* Dashboard */}
+                <Route
+                  path="/app"
+                  element={
+                    <ProtectedRoute>
+                      <Index />
+                    </ProtectedRoute>
+                  }
+                />
 
-          {/* Financial Management */}
-          <Route
-            path="/app/invoices"
-            element={
-              <ProtectedRoute>
-                <Invoices />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/invoices/new"
-            element={
-              <ProtectedRoute>
-                <Invoices />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/payments"
-            element={
-              <ProtectedRoute>
-                <Payments />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/payments/new"
-            element={
-              <ProtectedRoute>
-                <Payments />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/credit-notes"
-            element={
-              <ProtectedRoute>
-                <CreditNotes />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/credit-notes/new"
-            element={
-              <ProtectedRoute>
-                <CreditNotes />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/proforma"
-            element={
-              <ProtectedRoute>
-                <Proforma />
-              </ProtectedRoute>
-            }
-          />
+                {/* Sales & Customer Management */}
+                <Route
+                  path="/app/quotations"
+                  element={
+                    <ProtectedRoute>
+                      <Quotations />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/quotations/new"
+                  element={
+                    <ProtectedRoute>
+                      <Quotations />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/customers"
+                  element={
+                    <ProtectedRoute>
+                      <Customers />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/customers/new"
+                  element={
+                    <ProtectedRoute>
+                      <Customers />
+                    </ProtectedRoute>
+                  }
+                />
 
-          <Route
-            path="/app/admin/audit-logs"
-            element={
-              <ProtectedRoute>
-                <AuditLogs />
-              </ProtectedRoute>
-            }
-          />
+                {/* Financial Management */}
+                <Route
+                  path="/app/invoices"
+                  element={
+                    <ProtectedRoute>
+                      <Invoices />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/invoices/new"
+                  element={
+                    <ProtectedRoute>
+                      <Invoices />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/payments"
+                  element={
+                    <ProtectedRoute>
+                      <Payments />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/payments/new"
+                  element={
+                    <ProtectedRoute>
+                      <Payments />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/credit-notes"
+                  element={
+                    <ProtectedRoute>
+                      <CreditNotes />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/credit-notes/new"
+                  element={
+                    <ProtectedRoute>
+                      <CreditNotes />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/proforma"
+                  element={
+                    <ProtectedRoute>
+                      <Proforma />
+                    </ProtectedRoute>
+                  }
+                />
 
-          {/* Procurement & Inventory */}
-          <Route
-            path="/app/lpos"
-            element={
-              <ProtectedRoute>
-                <LPOs />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/lpos/new"
-            element={
-              <ProtectedRoute>
-                <LPOs />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/inventory"
-            element={
-              <ProtectedRoute>
-                <Inventory />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/inventory/new"
-            element={
-              <ProtectedRoute>
-                <Inventory />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/delivery-notes"
-            element={
-              <ProtectedRoute>
-                <DeliveryNotes />
-              </ProtectedRoute>
-            }
-          />
+                <Route
+                  path="/app/admin/audit-logs"
+                  element={
+                    <ProtectedRoute>
+                      <AuditLogs />
+                    </ProtectedRoute>
+                  }
+                />
 
-          {/* Additional Features */}
-          <Route
-            path="/app/remittance"
-            element={
-              <ProtectedRoute>
-                <RemittanceAdvice />
-              </ProtectedRoute>
-            }
-          />
+                {/* Procurement & Inventory */}
+                <Route
+                  path="/app/lpos"
+                  element={
+                    <ProtectedRoute>
+                      <LPOs />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/lpos/new"
+                  element={
+                    <ProtectedRoute>
+                      <LPOs />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/inventory"
+                  element={
+                    <ProtectedRoute>
+                      <Inventory />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/inventory/new"
+                  element={
+                    <ProtectedRoute>
+                      <Inventory />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/delivery-notes"
+                  element={
+                    <ProtectedRoute>
+                      <DeliveryNotes />
+                    </ProtectedRoute>
+                  }
+                />
 
-          {/* Reports */}
-          <Route
-            path="/app/reports/sales"
-            element={
-              <ProtectedRoute>
-                <SalesReports />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/reports/inventory"
-            element={
-              <ProtectedRoute>
-                <InventoryReports />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/reports/statements"
-            element={
-              <ProtectedRoute>
-                <StatementOfAccounts />
-              </ProtectedRoute>
-            }
-          />
+                {/* Additional Features */}
+                <Route
+                  path="/app/remittance"
+                  element={
+                    <ProtectedRoute>
+                      <RemittanceAdvice />
+                    </ProtectedRoute>
+                  }
+                />
 
-          {/* Web Manager */}
-          <Route
-            path="/app/web-manager"
-            element={
-              <ProtectedRoute requiredRole="admin">
-                <WebManager />
-              </ProtectedRoute>
-            }
-          />
+                {/* Reports */}
+                <Route
+                  path="/app/reports/sales"
+                  element={
+                    <ProtectedRoute>
+                      <SalesReports />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/reports/inventory"
+                  element={
+                    <ProtectedRoute>
+                      <InventoryReports />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/reports/statements"
+                  element={
+                    <ProtectedRoute>
+                      <StatementOfAccounts />
+                    </ProtectedRoute>
+                  }
+                />
 
-          {/* Settings */}
-          <Route
-            path="/app/settings/company"
-            element={
-              <ProtectedRoute>
-                <CompanySettings />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/app/settings/users"
-            element={
-              <ProtectedRoute>
-                <UserManagement />
-              </ProtectedRoute>
-            }
-          />
+                {/* Web Manager */}
+                <Route
+                  path="/app/web-manager"
+                  element={
+                    <ProtectedRoute requiredRole="admin">
+                      <WebManager />
+                    </ProtectedRoute>
+                  }
+                />
 
-          <Route
-            path="/app/setup-test"
-            element={
-              <ProtectedRoute>
-                <SetupAndTest />
-              </ProtectedRoute>
-            }
-          />
+                {/* Settings */}
+                <Route
+                  path="/app/settings/company"
+                  element={
+                    <ProtectedRoute>
+                      <CompanySettings />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/app/settings/users"
+                  element={
+                    <ProtectedRoute>
+                      <UserManagement />
+                    </ProtectedRoute>
+                  }
+                />
 
-          {/* Authentication Test - No protection needed */}
-          <Route path="/auth-test" element={<AuthTest />} />
+                <Route
+                  path="/app/setup-test"
+                  element={
+                    <ProtectedRoute>
+                      <SetupAndTest />
+                    </ProtectedRoute>
+                  }
+                />
 
+                {/* Authentication Test - No protection needed */}
+                <Route path="/auth-test" element={<AuthTest />} />
 
-          {/* Payment Synchronization - No protection needed for setup */}
-          <Route path="/payment-sync" element={<PaymentSynchronizationPage />} />
+                {/* Payment Synchronization - No protection needed for setup */}
+                <Route path="/payment-sync" element={<PaymentSynchronizationPage />} />
 
+                {/* Optimized Inventory - Performance-optimized inventory page */}
+                <Route
+                  path="/app/optimized-inventory"
+                  element={
+                    <ProtectedRoute>
+                      <OptimizedInventory />
+                    </ProtectedRoute>
+                  }
+                />
 
-          {/* Optimized Inventory - Performance-optimized inventory page */}
-          <Route
-            path="/app/optimized-inventory"
-            element={
-              <ProtectedRoute>
-                <OptimizedInventory />
-              </ProtectedRoute>
-            }
-          />
+                {/* Performance Optimizer - Database and inventory performance optimization */}
+                <Route path="/app/performance-optimizer" element={<PerformanceOptimizerPage />} />
 
-          {/* Performance Optimizer - Database and inventory performance optimization */}
-          <Route path="/app/performance-optimizer" element={<PerformanceOptimizerPage />} />
+                {/* Optimized Customers - Performance-optimized customers page */}
+                <Route
+                  path="/app/optimized-customers"
+                  element={
+                    <ProtectedRoute>
+                      <OptimizedCustomers />
+                    </ProtectedRoute>
+                  }
+                />
 
+                {/* Customer Performance Optimizer - Database and customer performance optimization */}
+                <Route path="/app/customer-performance-optimizer" element={<CustomerPerformanceOptimizerPage />} />
 
-          {/* Optimized Customers - Performance-optimized customers page */}
-          <Route
-            path="/app/optimized-customers"
-            element={
-              <ProtectedRoute>
-                <OptimizedCustomers />
-              </ProtectedRoute>
-            }
-          />
-
-          {/* Customer Performance Optimizer - Database and customer performance optimization */}
-          <Route path="/app/customer-performance-optimizer" element={<CustomerPerformanceOptimizerPage />} />
-
-
-
-
-          {/* 404 Page */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Layout>
+                {/* 404 Page */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Layout>
+          }
+        />
+      </Routes>
     </TooltipProvider>
   );
 };
