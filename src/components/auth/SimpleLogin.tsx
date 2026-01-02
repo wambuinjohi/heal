@@ -47,7 +47,7 @@ export function SimpleLogin() {
     if (error) {
       handleAuthError(error);
     } else {
-      toast.success('Welcome to Medplus Africa!');
+      toast.success('Welcome to &gt;&gt; Medical Supplies!');
     }
   };
 

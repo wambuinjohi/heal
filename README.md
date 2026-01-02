@@ -56,6 +56,51 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Setting Up Your First Admin User
+
+After deploying the application, you'll need to create the first admin user to get started.
+
+### Quick Setup
+
+1. **Get your Supabase Service Role Key:**
+   - Go to your Supabase project: https://app.supabase.com/
+   - Navigate to Settings → API
+   - Copy your **Service Role Key** (⚠️ keep this secret!)
+
+2. **Create the admin user:**
+
+   ```bash
+   export SUPABASE_SERVICE_ROLE_KEY="your-service-role-key"
+   node scripts/create-first-admin.js
+   ```
+
+3. **Follow the interactive prompts** to set up:
+   - Admin email
+   - Secure password
+   - Full name (optional)
+   - Company details
+
+### Alternative Setup Methods
+
+**Command-line arguments:**
+```bash
+export SUPABASE_SERVICE_ROLE_KEY="your-key"
+node scripts/create-first-admin.js admin@example.com "SecurePassword123!" "Admin Name"
+```
+
+**Environment variables:**
+```bash
+export SUPABASE_SERVICE_ROLE_KEY="your-key"
+export ADMIN_EMAIL="admin@example.com"
+export ADMIN_PASSWORD="SecurePassword123!"
+export ADMIN_FULL_NAME="Admin Name"
+node scripts/create-first-admin.js
+```
+
+### Full Documentation
+
+For detailed setup instructions, troubleshooting, and security best practices, see [FIRST_ADMIN_SETUP.md](./FIRST_ADMIN_SETUP.md)
+
 ## How can I deploy this project?
 
 Push your changes to your hosting provider or deploy using your preferred platform.

@@ -26,7 +26,7 @@ BEGIN
   SELECT id INTO v_company_id FROM companies LIMIT 1;
   IF v_company_id IS NULL THEN
     INSERT INTO companies(name, email, currency)
-    VALUES ('Medplus Africa', 'info@medplusafrica.com', 'KES')
+    VALUES ('>> Medical Supplies', 'info@medplusafrica.com', 'KES')
     RETURNING id INTO v_company_id;
   END IF;
 

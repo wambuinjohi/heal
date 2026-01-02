@@ -57,7 +57,7 @@ export function EnhancedLogin() {
         }, 2000);
       }
     } else {
-      toast.success('Welcome to Medplus Africa!');
+      toast.success('Welcome to >> Medical Supplies!');
       navigate('/app');
     }
     setSubmitting(false);
@@ -93,7 +93,7 @@ export function EnhancedLogin() {
 
             <div className="space-y-2 sm:space-y-3">
               <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 bg-clip-text text-transparent">
-                Medplus Africa
+                &gt;&gt; Medical Supplies
               </CardTitle>
               <p className="text-sm sm:text-base text-gray-600 font-medium">
                 💼 Sign in to access your business management system
@@ -204,7 +204,7 @@ export function EnhancedLogin() {
                 <span className="text-base sm:text-lg">👤</span> New user? Contact your administrator to create your account
               </p>
               <p className="text-xs text-gray-500 font-medium">
-                Medplus Africa © 2025 - Secure Login
+                &gt;&gt; Medical Supplies © 2025 - Secure Login
               </p>
             </div>
           </CardContent>

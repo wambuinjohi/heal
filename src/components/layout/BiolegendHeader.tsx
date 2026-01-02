@@ -9,7 +9,7 @@ export function BiolegendHeader() {
       </div>
       
       <div className="text-right text-sm">
-        <div className="font-semibold">MEDPLUS AFRICA</div>
+        <div className="font-semibold">&gt;&gt; MEDICAL SUPPLIES</div>
         <div className="text-xs opacity-90">&nbsp;</div>
         <div className="text-xs opacity-90">&nbsp;</div>
         <div className="text-xs opacity-90">info@medplusafrica.com</div>
@@ -24,7 +24,7 @@ export function BiolegendCompanyInfo() {
     <div className="space-y-2">
       <div className="flex items-center space-x-2">
         <Building2 className="h-4 w-4 text-primary" />
-        <span className="font-semibold">MEDPLUS AFRICA</span>
+        <span className="font-semibold">&gt;&gt; MEDICAL SUPPLIES</span>
       </div>
       <div className="text-sm text-muted-foreground space-y-1">
         <div>&nbsp;</div>

@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Medplus Africa Business Management System Design */
+/* >> Medical Supplies Business Management System Design */
 
 @layer base {
   :root {
-    /* Medplus Africa Brand Colors (Green & Blue) */
+    /* >> Medical Supplies Brand Colors (Green & Blue) */
     --background: 240 10% 98%;
     --foreground: 210 10% 15%;
 

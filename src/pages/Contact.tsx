@@ -115,7 +115,7 @@ export default function Contact() {
 
   const handleWhatsAppSubmit = () => {
     try {
-      const message = `*Inquiry from Medplus Africa Contact Form*
+      const message = `*Inquiry from &gt;&gt; Medical Supplies Contact Form*
 ━━━━━━━━━━━━━━━━━━━━━━
 
 *From:*

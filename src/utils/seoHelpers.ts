@@ -12,7 +12,7 @@ export interface SEOMetadata {
 }
 
 export const SITE_CONFIG = {
-  siteName: 'Medplus Africa',
+  siteName: '&gt;&gt; Medical Supplies',
   url: 'https://medplusafrica.com',
   logo: 'https://medplusafrica.com/assets/medplus-logo.webp',
   description: 'Trusted distributor of critical care supplies, hospital consumables, and furniture across Africa.',
@@ -183,8 +183,8 @@ export const generateCollectionSchema = (products: Array<{
 export const generateContactPageSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
-  name: 'Contact Medplus Africa',
-  description: 'Get in touch with Medplus Africa for inquiries and support regarding medical supplies and hospital equipment.',
+  name: 'Contact &gt;&gt; Medical Supplies',
+  description: 'Get in touch with &gt;&gt; Medical Supplies for inquiries and support regarding medical supplies and hospital equipment.',
   url: `${SITE_CONFIG.url}/contact`,
   contactPoint: {
     '@type': 'ContactPoint',

@@ -1,4 +1,4 @@
-# Medplus Africa - Robots.txt for Search Engine Crawlers
+# >> Medical Supplies - Robots.txt for Search Engine Crawlers
 # This file defines crawling rules for search engines
 
 # Default rules for all robots

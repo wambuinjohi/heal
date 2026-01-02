@@ -1,4 +1,4 @@
--- MedPlus Africa Business Management System
+-- >> Medical Supplies Business Management System
 -- Comprehensive Database Schema
 
 -- Enable UUID extension
@@ -354,11 +354,11 @@ ALTER TABLE remittance_advice ENABLE ROW LEVEL SECURITY;
 ALTER TABLE remittance_advice_items ENABLE ROW LEVEL SECURITY;
 ALTER TABLE stock_movements ENABLE ROW LEVEL SECURITY;
 
--- Sample data for MedPlus Africa
+-- Sample data for >> Medical Supplies
 INSERT INTO companies (id, name, registration_number, tax_number, email, phone, address, city, country, logo_url) 
 VALUES (
     '550e8400-e29b-41d4-a716-446655440000',
-    'MedPlus Africa Limited',
+    '>> Medical Supplies Limited',
     'C.52/2013',
     'A003 3456 F',
     'info@medplusafrica.com',

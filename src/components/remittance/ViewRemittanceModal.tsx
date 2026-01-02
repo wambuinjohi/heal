@@ -163,7 +163,7 @@ export function ViewRemittanceModal({
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Building2 className="h-5 w-5 text-primary" />
-                <span>From: MedPlus Africa Limited</span>
+                <span>From: &gt;&gt; Medical Supplies Limited</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
