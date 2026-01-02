@@ -107,7 +107,12 @@ const sidebarItems: SidebarItem[] = [
   }
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
   const location = useLocation();
   const { profile } = useAuth();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
@@ -217,29 +222,71 @@ export function Sidebar() {
   };
 
   return (
-    <div className="hidden md:flex h-full w-64 flex-col bg-sidebar border-r border-sidebar-border">
-      {/* Company Logo/Header */}
-      <div className="flex h-16 items-center border-b border-sidebar-border px-6">
-        <BiolegendLogo size="md" showText={true} className="text-sidebar-foreground" />
-      </div>
+    <>
+      {/* Mobile Overlay/Backdrop */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-30 md:hidden"
+          onClick={onClose}
+          aria-hidden="true"
+        />
+      )}
 
-      {/* Navigation */}
-      <nav className="flex-1 space-y-2 p-4 custom-scrollbar overflow-y-auto">
-        {sidebarItems.map(item => renderSidebarItem(item)).filter(Boolean)}
-      </nav>
+      {/* Desktop Sidebar */}
+      <div className="hidden md:flex h-full w-64 flex-col bg-sidebar border-r border-sidebar-border">
+        {/* Company Logo/Header */}
+        <div className="flex h-16 items-center border-b border-sidebar-border px-6">
+          <BiolegendLogo size="md" showText={true} className="text-sidebar-foreground" />
+        </div>
 
-      {/* Company Info */}
-      <div className="border-t border-sidebar-border p-4">
-        <div className="space-y-2">
-          <div className="flex items-center space-x-3 px-3 py-2 text-sm text-sidebar-foreground">
-            <Building2 className="h-4 w-4 text-sidebar-primary" />
-            <div>
-              <div className="font-medium text-sm">&gt;&gt; Medical Supplies</div>
-              <div className="text-xs text-sidebar-foreground/60">Healthcare & Pharmaceuticals</div>
+        {/* Navigation */}
+        <nav className="flex-1 space-y-2 p-4 custom-scrollbar overflow-y-auto">
+          {sidebarItems.map(item => renderSidebarItem(item)).filter(Boolean)}
+        </nav>
+
+        {/* Company Info */}
+        <div className="border-t border-sidebar-border p-4">
+          <div className="space-y-2">
+            <div className="flex items-center space-x-3 px-3 py-2 text-sm text-sidebar-foreground">
+              <Building2 className="h-4 w-4 text-sidebar-primary" />
+              <div>
+                <div className="font-medium text-sm">&gt;&gt; Medical Supplies</div>
+                <div className="text-xs text-sidebar-foreground/60">Healthcare & Pharmaceuticals</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Mobile Sidebar */}
+      <div
+        className={`fixed left-0 top-0 h-screen w-64 flex flex-col bg-sidebar border-r border-sidebar-border z-40 md:hidden transition-transform duration-300 ease-in-out ${
+          isOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        {/* Company Logo/Header */}
+        <div className="flex h-16 items-center border-b border-sidebar-border px-6">
+          <BiolegendLogo size="md" showText={true} className="text-sidebar-foreground" />
+        </div>
+
+        {/* Navigation */}
+        <nav className="flex-1 space-y-2 p-4 custom-scrollbar overflow-y-auto">
+          {sidebarItems.map(item => renderSidebarItem(item)).filter(Boolean)}
+        </nav>
+
+        {/* Company Info */}
+        <div className="border-t border-sidebar-border p-4">
+          <div className="space-y-2">
+            <div className="flex items-center space-x-3 px-3 py-2 text-sm text-sidebar-foreground">
+              <Building2 className="h-4 w-4 text-sidebar-primary" />
+              <div>
+                <div className="font-medium text-sm">&gt;&gt; Medical Supplies</div>
+                <div className="text-xs text-sidebar-foreground/60">Healthcare & Pharmaceuticals</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
