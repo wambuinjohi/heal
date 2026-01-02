@@ -187,7 +187,7 @@ export function CustomerPerformanceOptimizer() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-blue-500" />
+            <TrendingUp className="h-5 w-5 text-orange-500" />
             Expected Performance Improvements
           </CardTitle>
         </CardHeader>
