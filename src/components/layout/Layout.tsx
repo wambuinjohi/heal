@@ -11,6 +11,15 @@ interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
   const { isAuthenticated, loading } = useAuth();
   const [loadingStartTime] = useState(Date.now());
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   // Show login if not authenticated
   if (!loading && !isAuthenticated) {
@@ -50,9 +59,9 @@ export function Layout({ children }: LayoutProps) {
   // Show authenticated layout
   return (
     <div className="flex h-screen bg-background">
-      <Sidebar />
+      <Sidebar isOpen={isMobileMenuOpen} onClose={closeMobileMenu} />
       <div className="flex flex-1 flex-col overflow-hidden min-w-0">
-        <Header />
+        <Header onMenuToggle={toggleMobileMenu} isMobileMenuOpen={isMobileMenuOpen} />
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 custom-scrollbar">
           {children}
         </main>
