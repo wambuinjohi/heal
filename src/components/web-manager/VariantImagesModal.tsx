@@ -124,7 +124,7 @@ export const VariantImagesModal = ({
                       className="w-full h-full object-cover aspect-square"
                     />
                     {idx === currentIndex && (
-                      <div className="absolute inset-0 bg-blue-500/10"></div>
+                      <div className="absolute inset-0 bg-orange-500/10"></div>
                     )}
                   </button>
                 ))}
