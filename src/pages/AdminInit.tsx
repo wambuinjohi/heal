@@ -51,18 +51,15 @@ export default function AdminInit() {
         return;
       }
 
-      // Get Supabase URL
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL ||
-                          import.meta.env.NEXT_PUBLIC_SUPABASE_URL;
-      if (!supabaseUrl) {
-        throw new Error('Supabase URL not configured');
-      }
-
       // First, create the company if it doesn't exist
-      const { data: companies } = await supabase
+      const { data: companies, error: companiesError } = await supabase
         .from('companies')
         .select('id')
         .limit(1);
+
+      if (companiesError) {
+        throw new Error(`Failed to check companies: ${companiesError.message}`);
+      }
 
       let companyId = null;
       if (!companies || companies.length === 0) {
@@ -78,48 +75,58 @@ export default function AdminInit() {
           .single();
 
         if (companyError) {
-          console.warn('Company creation warning:', companyError);
-        } else if (newCompany) {
+          throw new Error(`Failed to create company: ${companyError.message}`);
+        }
+
+        if (newCompany) {
           companyId = newCompany.id;
         }
       } else {
         companyId = companies[0].id;
       }
 
-      // Call the admin-create-user edge function
-      const response = await fetch(`${supabaseUrl}/functions/v1/admin-create-user`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      if (!companyId) {
+        throw new Error('Failed to get or create company ID');
+      }
+
+      // Create profile record for admin
+      const now = new Date().toISOString();
+      const { error: profileError } = await supabase
+        .from('profiles')
+        .insert({
           email: ADMIN_EMAIL,
-          password: ADMIN_PASSWORD,
           full_name: ADMIN_NAME,
-          role: 'admin',
           company_id: companyId,
-        })
-      });
+          role: 'admin',
+          status: 'active',
+          created_at: now,
+          updated_at: now,
+        });
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || `Failed to create admin user: ${response.statusText}`);
+      if (profileError) {
+        if (profileError.message?.includes('duplicate')) {
+          throw new Error('Admin user already exists');
+        }
+        throw new Error(`Failed to create admin profile: ${profileError.message}`);
       }
 
       // Verify the admin was created
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Wait a moment for DB sync
+      await new Promise(resolve => setTimeout(resolve, 500)); // Wait for DB sync
 
-      const { data: profile } = await supabase
+      const { data: profile, error: verifyError } = await supabase
         .from('profiles')
         .select('id, email, role, status')
         .eq('email', ADMIN_EMAIL)
         .maybeSingle();
 
+      if (verifyError) {
+        throw new Error(`Failed to verify admin creation: ${verifyError.message}`);
+      }
+
       if (profile && profile.status === 'active' && profile.role === 'admin') {
         setInitialized(true);
         toast.success('✅ Admin user initialized successfully!', {
-          description: `Email: ${ADMIN_EMAIL}`,
+          description: `Email: ${ADMIN_EMAIL}\n\nYou can now sign up with these credentials.`,
           duration: 5000
         });
       } else {
