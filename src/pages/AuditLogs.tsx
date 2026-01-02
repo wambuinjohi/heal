@@ -15,6 +15,7 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { formatDistanceToNow } from 'date-fns';
 import { Download, ChevronDown } from 'lucide-react';
+import { ensureAuditLogSchema } from '@/utils/auditLogger';
 
 interface AuditLog {
   id: string;
