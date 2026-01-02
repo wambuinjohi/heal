@@ -1,5 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { ReactNode, useState } from 'react';
 import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 import { useAuth } from '@/contexts/AuthContext';
