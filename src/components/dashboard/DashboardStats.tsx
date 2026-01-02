@@ -165,14 +165,14 @@ export function DashboardStats() {
   return (
     <div className="space-y-4">
       {/* Primary Stats */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {dashboardStats.map((stat) => (
           <StatCard key={stat.title} {...stat} />
         ))}
       </div>
-      
+
       {/* Secondary Stats */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {secondaryStats.map((stat) => (
           <StatCard key={stat.title} {...stat} />
         ))}
