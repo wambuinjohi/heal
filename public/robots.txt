@@ -37,4 +37,4 @@ User-agent: *
 Disallow: /*.pdf$
 
 # Sitemap location
-Sitemap: https://>>-medical-supplies.com/sitemap.xml
+Sitemap: https://medplusafrica.com/sitemap.xml
