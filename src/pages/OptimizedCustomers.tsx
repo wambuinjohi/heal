@@ -464,10 +464,10 @@ export default function OptimizedCustomers() {
         <Card className="shadow-card">
           <CardContent className="pt-6">
             <div className="flex items-center space-x-2">
-              <CreditCard className="h-5 w-5 text-blue-500" />
+              <CreditCard className="h-5 w-5 text-orange-500" />
               <div>
                 <p className="text-sm font-medium text-muted-foreground">With Credit Limit</p>
-                <p className="text-2xl font-bold text-blue-600">
+                <p className="text-2xl font-bold text-orange-600">
                   {loadingStats ? '...' : stats?.customersWithCreditLimit || 0}
                 </p>
               </div>
