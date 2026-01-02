@@ -21,6 +21,7 @@ import { Search, LogIn, CheckCircle, UserPlus } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
+import { ensureAuditLogSchema } from '@/utils/auditLogger';
 
 interface AuditLog {
   id: string;
