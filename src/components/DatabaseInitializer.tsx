@@ -106,7 +106,7 @@ export function DatabaseInitializer() {
                   <strong>Having trouble?</strong> If you get an "email not confirmed" error,{' '}
                   <a
                     href="/email-confirmation"
-                    className="text-blue-600 hover:underline font-medium"
+                    className="text-orange-600 hover:underline font-medium"
                   >
                     click here for help
                   </a>.
