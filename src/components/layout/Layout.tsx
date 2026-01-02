@@ -29,6 +29,15 @@ export function Layout({ children }: LayoutProps) {
     closeMobileMenu();
   }, [location.pathname]);
 
+  // Ensure audit logs table exists on app initialization
+  useEffect(() => {
+    if (isAuthenticated && !loading) {
+      ensureAuditLogSchema().catch((err) => {
+        console.warn('Failed to ensure audit logs schema:', err);
+      });
+    }
+  }, [isAuthenticated, loading]);
+
   // Show login if not authenticated
   if (!loading && !isAuthenticated) {
     return <EnhancedLogin />;
