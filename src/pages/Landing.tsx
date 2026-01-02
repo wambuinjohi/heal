@@ -222,10 +222,10 @@ export default function Landing() {
       <ProductCarousel />
 
       {/* Our Goals Section */}
-      <section className="py-12 sm:py-24 bg-gradient-to-b from-white to-blue-50/30">
+      <section className="py-12 sm:py-24 bg-gradient-to-b from-white to-orange-50/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-3 sm:mb-4">Our Goals</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent mb-3 sm:mb-4">Our Goals</h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-2">
               Committed to delivering excellence in healthcare solutions across Africa
             </p>
