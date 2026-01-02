@@ -1,5 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { ReactNode, useState } from 'react';
 import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 import { useAuth } from '@/contexts/AuthContext';
@@ -11,16 +10,10 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   const { isAuthenticated, loading } = useAuth();
-  const location = useLocation();
   const [loadingStartTime] = useState(Date.now());
 
-  // Routes that don't require authentication
-  const publicRoutes = ['/', '/about-us', '/products', '/contact', '/media', '/offers', '/auth-test', '/manual-setup', '/database-fix-page', '/auto-fix', '/audit', '/auto-payment-sync', '/payment-sync'];
-  const isPublicRoute = publicRoutes.includes(location.pathname) || location.pathname.startsWith('/products/');
-  const isLandingPage = location.pathname === '/';
-
-  // Show login after initial auth completes to avoid redirect bounce
-  if (!loading && !isAuthenticated && !isPublicRoute) {
+  // Show login if not authenticated
+  if (!loading && !isAuthenticated) {
     return <EnhancedLogin />;
   }
 
@@ -36,7 +29,7 @@ export function Layout({ children }: LayoutProps) {
     );
   }
 
-  // Show loading spinner if loading and no authentication state yet
+  // Show loading spinner while authenticating
   if (loading) {
     const loadingDuration = Math.floor((Date.now() - loadingStartTime) / 1000);
 
@@ -50,27 +43,6 @@ export function Layout({ children }: LayoutProps) {
             <p className="text-sm text-muted-foreground mt-2">Almost ready...</p>
           )}
         </div>
-      </div>
-    );
-  }
-
-  // Show simple layout for public routes
-  if (isPublicRoute) {
-    // Landing page takes full width without header/sidebar
-    if (isLandingPage) {
-      return (
-        <div className="w-full">
-          {children}
-        </div>
-      );
-    }
-
-    // Other public routes show with header
-    return (
-      <div className="min-h-screen bg-background">
-        <main className="w-full">
-          {children}
-        </main>
       </div>
     );
   }

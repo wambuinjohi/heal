@@ -7,9 +7,16 @@
 set -e
 
 # Configuration
-PROJECT_REF="klifzjcfnlaxminytmyh"
+PROJECT_REF="${SUPABASE_PROJECT_REF:-}"
 BACKUP_DIR="./database-backups"
 TIMESTAMP="$(date +%Y%m%d_%H%M%S)"
+
+# Validate project reference
+if [ -z "$PROJECT_REF" ]; then
+    echo "❌ Error: SUPABASE_PROJECT_REF environment variable not set"
+    echo "Please set the project reference before running this script"
+    exit 1
+fi
 
 # Create backup directory
 mkdir -p "$BACKUP_DIR"

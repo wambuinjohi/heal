@@ -1,20 +1,11 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { enableResizeObserverErrorSuppression } from "@/utils/resizeObserverErrorHandler";
 import { useEffect } from "react";
 import { Layout } from "@/components/layout/Layout";
-import { addStructuredData, generateOrganizationSchema } from "@/utils/seoHelpers";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
-import Landing from "./pages/Landing";
-import AboutUs from "./pages/AboutUs";
-import OurProducts from "./pages/OurProducts";
-import ProductDetail from "./pages/ProductDetail";
-import Contact from "./pages/Contact";
-import Media from "./pages/Media";
-import Offers from "./pages/Offers";
-import Sitemap from "./pages/Sitemap";
 import Index from "./pages/Index";
 import Quotations from "./pages/Quotations";
 import Invoices from "./pages/Invoices";
@@ -47,10 +38,6 @@ const App = () => {
   useEffect(() => {
     // Suppress ResizeObserver loop errors
     enableResizeObserverErrorSuppression();
-
-    // Add global Organization schema for SEO
-    addStructuredData(generateOrganizationSchema());
-
   }, []);
 
   return (
@@ -59,15 +46,8 @@ const App = () => {
       <Sonner />
       <Layout>
         <Routes>
-          {/* Public Website Pages */}
-          <Route path="/" element={<Landing />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/products" element={<OurProducts />} />
-          <Route path="/products/:productSlug" element={<ProductDetail />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/media" element={<Media />} />
-          <Route path="/offers" element={<Offers />} />
-          <Route path="/sitemap.xml" element={<Sitemap />} />
+          {/* Redirect root to app dashboard */}
+          <Route path="/" element={<Navigate to="/app" replace />} />
 
           {/* App Routes - Protected */}
           {/* Dashboard */}
