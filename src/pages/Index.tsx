@@ -119,14 +119,14 @@ const Index = () => {
       <DashboardStats />
 
       {/* Main Content Grid */}
-      <div className="grid gap-6 lg:grid-cols-3">
-        {/* Left Column - Takes 2/3 of the space */}
-        <div className="lg:col-span-2 space-y-6">
+      <div className="grid gap-6 grid-cols-1 lg:grid-cols-3">
+        {/* Left Column - Takes 2/3 of the space on lg screens */}
+        <div className="lg:col-span-2 space-y-6 order-2 lg:order-1">
           <RecentActivity />
         </div>
 
-        {/* Right Column - Takes 1/3 of the space */}
-        <div className="space-y-6">
+        {/* Right Column - Takes 1/3 of the space on lg screens */}
+        <div className="space-y-6 order-1 lg:order-2">
           <QuickActions />
 
           {/* Auth Performance Monitor - Toggle visibility */}
