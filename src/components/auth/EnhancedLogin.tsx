@@ -83,16 +83,16 @@ export function EnhancedLogin() {
 
       <div className="relative z-10 w-full sm:max-w-lg md:max-w-2xl">
         <Card className="w-full shadow-2xl border-2 border-white/80 backdrop-blur-sm">
-          <CardHeader className="text-center space-y-4 sm:space-y-6 bg-gradient-to-b from-blue-50/50 to-transparent p-6 sm:p-8">
+          <CardHeader className="text-center space-y-4 sm:space-y-6 bg-gradient-to-b from-orange-50/50 to-transparent p-6 sm:p-8">
             {/* Animated Logo */}
             <div className="mx-auto animate-bounce" style={{ animationDuration: '2s' }}>
-              <div className="bg-gradient-to-br from-blue-500 to-green-500 p-2 sm:p-3 rounded-2xl inline-block shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="bg-gradient-to-br from-orange-500 to-amber-500 p-2 sm:p-3 rounded-2xl inline-block shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <BiolegendLogo size="lg" showText={false} />
               </div>
             </div>
 
             <div className="space-y-2 sm:space-y-3">
-              <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent">
+              <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 bg-clip-text text-transparent">
                 Medplus Africa
               </CardTitle>
               <p className="text-sm sm:text-base text-gray-600 font-medium">
@@ -102,9 +102,9 @@ export function EnhancedLogin() {
 
             {/* Decorative line */}
             <div className="flex items-center gap-3 justify-center mt-3 sm:mt-4">
-              <div className="h-1 w-8 bg-gradient-to-r from-blue-500 to-transparent"></div>
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <div className="h-1 w-8 bg-gradient-to-l from-green-500 to-transparent"></div>
+              <div className="h-1 w-8 bg-gradient-to-r from-orange-500 to-transparent"></div>
+              <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+              <div className="h-1 w-8 bg-gradient-to-l from-amber-500 to-transparent"></div>
             </div>
           </CardHeader>
 
