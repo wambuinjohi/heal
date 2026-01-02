@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
-import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Copy, CheckCircle2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase';
 
 export default function AdminInit() {
-  const [loading, setLoading] = useState(false);
-  const [initialized, setInitialized] = useState(false);
   const [adminExists, setAdminExists] = useState(false);
   const [checkingAdmin, setCheckingAdmin] = useState(true);
+  const [copied, setCopied] = useState(false);
 
   const ADMIN_EMAIL = 'admin@mail.com';
   const ADMIN_PASSWORD = 'Admin.12';
   const ADMIN_NAME = 'System Admin';
+
+  const setupCommand = './setup-admin.sh';
 
   useEffect(() => {
     checkAdminExists();
@@ -22,124 +22,28 @@ export default function AdminInit() {
   async function checkAdminExists() {
     try {
       setCheckingAdmin(true);
-      
+
       // Try to check if admin profile already exists
       const { data: profiles, error } = await supabase
         .from('profiles')
-        .select('count', { count: 'exact', head: true })
-        .eq('email', ADMIN_EMAIL);
+        .select('id')
+        .eq('email', ADMIN_EMAIL)
+        .maybeSingle();
 
       if (!error && profiles) {
         setAdminExists(true);
       }
     } catch (error) {
       console.error('Error checking admin:', error);
-      // Continue anyway - we'll handle it during init
     } finally {
       setCheckingAdmin(false);
     }
   }
 
-  async function initializeAdmin() {
-    setLoading(true);
-
-    try {
-      // Check if user already exists
-      if (adminExists) {
-        toast.error('Admin user already exists!');
-        setLoading(false);
-        return;
-      }
-
-      // First, create the company if it doesn't exist
-      const { data: companies, error: companiesError } = await supabase
-        .from('companies')
-        .select('id')
-        .limit(1);
-
-      if (companiesError) {
-        throw new Error(`Failed to check companies: ${companiesError.message}`);
-      }
-
-      let companyId = null;
-      if (!companies || companies.length === 0) {
-        // Create default company
-        const { data: newCompany, error: companyError } = await supabase
-          .from('companies')
-          .insert({
-            name: 'Medical Supplies',
-            email: ADMIN_EMAIL,
-            currency: 'KES',
-          })
-          .select('id')
-          .single();
-
-        if (companyError) {
-          throw new Error(`Failed to create company: ${companyError.message}`);
-        }
-
-        if (newCompany) {
-          companyId = newCompany.id;
-        }
-      } else {
-        companyId = companies[0].id;
-      }
-
-      if (!companyId) {
-        throw new Error('Failed to get or create company ID');
-      }
-
-      // Create profile record for admin
-      const now = new Date().toISOString();
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .insert({
-          email: ADMIN_EMAIL,
-          full_name: ADMIN_NAME,
-          company_id: companyId,
-          role: 'admin',
-          status: 'active',
-          created_at: now,
-          updated_at: now,
-        });
-
-      if (profileError) {
-        if (profileError.message?.includes('duplicate')) {
-          throw new Error('Admin user already exists');
-        }
-        throw new Error(`Failed to create admin profile: ${profileError.message}`);
-      }
-
-      // Verify the admin was created
-      await new Promise(resolve => setTimeout(resolve, 500)); // Wait for DB sync
-
-      const { data: profile, error: verifyError } = await supabase
-        .from('profiles')
-        .select('id, email, role, status')
-        .eq('email', ADMIN_EMAIL)
-        .maybeSingle();
-
-      if (verifyError) {
-        throw new Error(`Failed to verify admin creation: ${verifyError.message}`);
-      }
-
-      if (profile && profile.status === 'active' && profile.role === 'admin') {
-        setInitialized(true);
-        toast.success('✅ Admin user initialized successfully!', {
-          description: `Email: ${ADMIN_EMAIL}\n\nYou can now sign up with these credentials.`,
-          duration: 5000
-        });
-      } else {
-        throw new Error('Admin user created but verification failed');
-      }
-    } catch (error) {
-      console.error('Initialization error:', error);
-      toast.error(
-        error instanceof Error ? error.message : 'Failed to initialize admin user'
-      );
-    } finally {
-      setLoading(false);
-    }
+  function copyToClipboard(text: string) {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   }
 
   if (checkingAdmin) {
