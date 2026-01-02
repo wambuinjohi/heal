@@ -236,6 +236,25 @@ CREATE INDEX IF NOT EXISTS idx_payment_methods_company_id ON payment_methods(com
 CREATE INDEX IF NOT EXISTS idx_payment_methods_is_active ON payment_methods(is_active);
 CREATE INDEX IF NOT EXISTS idx_quotations_company_id ON quotations(company_id);
 CREATE INDEX IF NOT EXISTS idx_invoices_company_id ON invoices(company_id);
+
+-- Audit logs table
+CREATE TABLE IF NOT EXISTS audit_logs (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  action TEXT NOT NULL,
+  entity_type TEXT NOT NULL,
+  record_id UUID,
+  company_id UUID,
+  actor_user_id UUID,
+  actor_email TEXT,
+  details JSONB
+);
+
+-- Create indexes for audit logs
+CREATE INDEX IF NOT EXISTS idx_audit_logs_entity ON audit_logs(entity_type, record_id);
+CREATE INDEX IF NOT EXISTS idx_audit_logs_company ON audit_logs(company_id);
+CREATE INDEX IF NOT EXISTS idx_audit_logs_action ON audit_logs(action);
+CREATE INDEX IF NOT EXISTS idx_audit_logs_created_at ON audit_logs(created_at);
 `;
 
 // Function to handle new user signup trigger
