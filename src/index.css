@@ -53,15 +53,15 @@
 
     --radius: 0.5rem;
 
-    /* Sidebar - Medplus Professional */
-    --sidebar-background: 196 30% 12%;
-    --sidebar-foreground: 210 5% 85%;
-    --sidebar-primary: 152 62% 44%;
+    /* Sidebar - Orange Theme */
+    --sidebar-background: 24 35% 12%;
+    --sidebar-foreground: 30 5% 85%;
+    --sidebar-primary: 30 100% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 196 30% 18%;
-    --sidebar-accent-foreground: 210 5% 85%;
-    --sidebar-border: 196 30% 18%;
-    --sidebar-ring: 152 62% 44%;
+    --sidebar-accent: 24 35% 18%;
+    --sidebar-accent-foreground: 30 5% 85%;
+    --sidebar-border: 24 35% 18%;
+    --sidebar-ring: 30 100% 48%;
 
     /* Medplus Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(152 62% 44%), hsl(197 74% 53%));
