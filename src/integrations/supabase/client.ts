@@ -3,19 +3,21 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
 // Get environment variables with fallbacks
-const SUPABASE_URL = import.meta.env.NEXT_PUBLIC_SUPABASE_URL ||
-                     import.meta.env.VITE_SUPABASE_URL;
+// Note: Vite only exposes VITE_ prefixed variables via import.meta.env
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 
-const SUPABASE_PUBLISHABLE_KEY = import.meta.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY ||
-                                import.meta.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-                                import.meta.env.VITE_SUPABASE_ANON_KEY;
+const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY ||
+                                import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 // Check for missing configuration
 const isMissingConfig = !SUPABASE_URL || SUPABASE_URL === 'undefined' ||
                        !SUPABASE_PUBLISHABLE_KEY || SUPABASE_PUBLISHABLE_KEY === 'undefined';
 
 if (isMissingConfig) {
-  console.warn('⚠️ Supabase configuration is missing. Environment variables not properly set. App will continue with limited functionality.');
+  console.warn('⚠️ Supabase configuration is missing.');
+  console.warn('   VITE_SUPABASE_URL:', import.meta.env.VITE_SUPABASE_URL ? '✓ Set' : '✗ Missing');
+  console.warn('   VITE_SUPABASE_ANON_KEY:', import.meta.env.VITE_SUPABASE_ANON_KEY ? '✓ Set' : '✗ Missing');
+  console.warn('   App will continue with limited functionality.');
 }
 
 // Lazy initialize the Supabase client
@@ -27,12 +29,15 @@ function getSupabaseClient() {
   }
 
   if (isMissingConfig) {
-    console.error('❌ Cannot initialize Supabase: Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY');
-    // Return a mock client that allows the app to continue running
-    return createMockClient();
-  }
+  console.error('❌ Cannot initialize Supabase: Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY');
+  console.error('   Required environment variables:');
+  console.error('   - VITE_SUPABASE_URL (your Supabase project URL)');
+  console.error('   - VITE_SUPABASE_ANON_KEY (your Supabase publishable/anon key)');
+  // Return a mock client that allows the app to continue running
+  return createMockClient();
+}
 
-  console.log('✅ Supabase client initializing with URL:', SUPABASE_URL!.substring(0, 30) + '...');
+  console.log('✅ Supabase client initialized with URL:', SUPABASE_URL!.substring(0, 30) + '...');
 
   supabaseInstance = createClient<Database>(SUPABASE_URL!, SUPABASE_PUBLISHABLE_KEY!, {
     auth: {
