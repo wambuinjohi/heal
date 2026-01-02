@@ -117,12 +117,12 @@ export async function createAdminUser(options: CreateAdminOptions) {
 
     onProgress?.(`✅ Auth user created (ID: ${userId.substring(0, 8)}...)`);
 
-    // Step 3: Create profile
+    // Step 3: Create or update profile (use upsert to handle auto-created profile from auth trigger)
     onProgress?.('📝 Creating user profile...');
     const now = new Date().toISOString();
     const { error: profileError } = await supabaseAdmin
       .from('profiles')
-      .insert({
+      .upsert({
         id: userId,
         email: email,
         full_name: fullName,
@@ -131,6 +131,9 @@ export async function createAdminUser(options: CreateAdminOptions) {
         company_id: companyId,
         created_at: now,
         updated_at: now,
+      }, {
+        onConflict: 'id',
+        returning: 'minimal'
       });
 
     if (profileError) {
