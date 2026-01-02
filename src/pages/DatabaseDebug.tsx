@@ -243,13 +243,13 @@ ${SQL_MIGRATION}`;
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-blue-50 p-4 rounded-lg">
+                <div className="bg-orange-50 p-4 rounded-lg">
                   <p className="text-sm text-gray-600">Tables Ready</p>
                   <p className={`text-2xl font-bold ${dbStatus.tablesReady ? 'text-green-600' : 'text-red-600'}`}>
                     {dbStatus.tablesReady ? '✅ Yes' : '❌ No'}
                   </p>
                 </div>
-                <div className="bg-purple-50 p-4 rounded-lg">
+                <div className="bg-amber-50 p-4 rounded-lg">
                   <p className="text-sm text-gray-600">Users Exist</p>
                   <p className={`text-2xl font-bold ${dbStatus.usersExist ? 'text-green-600' : 'text-orange-600'}`}>
                     {dbStatus.usersExist ? '✅ Yes' : '⏳ No'}
