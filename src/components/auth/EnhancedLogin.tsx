@@ -116,14 +116,14 @@ export function EnhancedLogin() {
                   <span className="text-base sm:text-lg">📧</span> Email Address
                 </Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 sm:left-4 top-1/2 h-4 w-4 sm:h-5 sm:w-5 -translate-y-1/2 text-blue-500 group-focus-within:text-green-500 transition-colors" />
+                  <Mail className="absolute left-3 sm:left-4 top-1/2 h-4 w-4 sm:h-5 sm:w-5 -translate-y-1/2 text-orange-500 group-focus-within:text-amber-500 transition-colors" />
                   <Input
                     id="email"
                     type="email"
                     placeholder="your@email.com"
                     value={formData.email}
                     onChange={handleInputChange('email')}
-                    className={`pl-10 sm:pl-12 py-2 sm:py-3 text-sm sm:text-base border-2 rounded-lg transition-all duration-300 hover:border-blue-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 ${
+                    className={`pl-10 sm:pl-12 py-2 sm:py-3 text-sm sm:text-base border-2 rounded-lg transition-all duration-300 hover:border-orange-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 ${
                       formErrors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-gray-200'
                     }`}
                     disabled={submitting}
