@@ -104,7 +104,7 @@ export function CustomerPerformanceOptimizer() {
       {/* Header */}
       <div className="text-center space-y-2">
         <h2 className="text-2xl font-bold flex items-center justify-center gap-2">
-          <Users className="h-6 w-6 text-blue-500" />
+          <Users className="h-6 w-6 text-orange-500" />
           Customer Performance Optimizer
         </h2>
         <p className="text-muted-foreground">
