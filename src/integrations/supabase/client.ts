@@ -10,26 +10,60 @@ const SUPABASE_PUBLISHABLE_KEY = import.meta.env.NEXT_PUBLIC_SUPABASE_PUBLISHABL
                                 import.meta.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
                                 import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-// Validate that we have valid values
-if (!SUPABASE_URL || SUPABASE_URL === 'undefined') {
-  console.error('❌ SUPABASE_URL is not defined. Please check your environment variables.');
-  throw new Error('Supabase URL is required but not found in environment variables.');
+// Check for missing configuration
+const isMissingConfig = !SUPABASE_URL || SUPABASE_URL === 'undefined' ||
+                       !SUPABASE_PUBLISHABLE_KEY || SUPABASE_PUBLISHABLE_KEY === 'undefined';
+
+if (isMissingConfig) {
+  console.warn('⚠️ Supabase configuration is missing. Environment variables not properly set. App will continue with limited functionality.');
 }
 
-if (!SUPABASE_PUBLISHABLE_KEY || SUPABASE_PUBLISHABLE_KEY === 'undefined') {
-  console.error('❌ SUPABASE_PUBLISHABLE_KEY is not defined. Please check your environment variables.');
-  throw new Error('Supabase publishable key is required but not found in environment variables.');
+// Lazy initialize the Supabase client
+let supabaseInstance: any = null;
+
+function getSupabaseClient() {
+  if (supabaseInstance) {
+    return supabaseInstance;
+  }
+
+  if (isMissingConfig) {
+    console.error('❌ Cannot initialize Supabase: Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY');
+    // Return a mock client that allows the app to continue running
+    return createMockClient();
+  }
+
+  console.log('✅ Supabase client initializing with URL:', SUPABASE_URL!.substring(0, 30) + '...');
+
+  supabaseInstance = createClient<Database>(SUPABASE_URL!, SUPABASE_PUBLISHABLE_KEY!, {
+    auth: {
+      storage: localStorage,
+      persistSession: true,
+      autoRefreshToken: true,
+    }
+  });
+
+  return supabaseInstance;
 }
 
-console.log('✅ Supabase client initializing with URL:', SUPABASE_URL.substring(0, 30) + '...');
+function createMockClient() {
+  return {
+    auth: {
+      onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+      getSession: async () => ({ data: { session: null } }),
+      signInWithPassword: async () => ({ error: new Error('Supabase not configured') }),
+      signUp: async () => ({ error: new Error('Supabase not configured') }),
+      signOut: async () => ({ error: new Error('Supabase not configured') }),
+    },
+    from: () => ({
+      select: () => Promise.reject(new Error('Supabase not configured')),
+      insert: () => Promise.reject(new Error('Supabase not configured')),
+      update: () => Promise.reject(new Error('Supabase not configured')),
+      delete: () => Promise.reject(new Error('Supabase not configured')),
+    }),
+  };
+}
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
 
-export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-  auth: {
-    storage: localStorage,
-    persistSession: true,
-    autoRefreshToken: true,
-  }
-});
+export const supabase = getSupabaseClient();
