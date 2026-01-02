@@ -236,6 +236,25 @@ CREATE INDEX IF NOT EXISTS idx_payment_methods_company_id ON payment_methods(com
 CREATE INDEX IF NOT EXISTS idx_payment_methods_is_active ON payment_methods(is_active);
 CREATE INDEX IF NOT EXISTS idx_quotations_company_id ON quotations(company_id);
 CREATE INDEX IF NOT EXISTS idx_invoices_company_id ON invoices(company_id);
+
+-- Audit logs table
+CREATE TABLE IF NOT EXISTS audit_logs (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  action TEXT NOT NULL,
+  entity_type TEXT NOT NULL,
+  record_id UUID,
+  company_id UUID,
+  actor_user_id UUID,
+  actor_email TEXT,
+  details JSONB
+);
+
+-- Create indexes for audit logs
+CREATE INDEX IF NOT EXISTS idx_audit_logs_entity ON audit_logs(entity_type, record_id);
+CREATE INDEX IF NOT EXISTS idx_audit_logs_company ON audit_logs(company_id);
+CREATE INDEX IF NOT EXISTS idx_audit_logs_action ON audit_logs(action);
+CREATE INDEX IF NOT EXISTS idx_audit_logs_created_at ON audit_logs(created_at);
 `;
 
 // Function to handle new user signup trigger
@@ -324,9 +343,9 @@ export async function setupDatabase() {
 
     // Step 3: Verify tables exist
     console.log('🔍 Verifying table creation...');
-    const tablesToCheck = ['profiles', 'companies', 'customers', 'products', 'quotations', 'invoices', 'units_of_measure', 'payment_methods'];
+    const tablesToCheck = ['profiles', 'companies', 'customers', 'products', 'quotations', 'invoices', 'units_of_measure', 'payment_methods', 'audit_logs'];
     let tablesExist = 0;
-    
+
     for (const table of tablesToCheck) {
       try {
         const { error } = await supabase.from(table).select('id').limit(1);
@@ -337,9 +356,9 @@ export async function setupDatabase() {
         console.warn(`Table ${table} verification failed:`, err);
       }
     }
-    
-    results.steps.push({ 
-      step: `Verify tables (${tablesExist}/${tablesToCheck.length} working)`, 
+
+    results.steps.push({
+      step: `Verify tables (${tablesExist}/${tablesToCheck.length} working)`,
       success: tablesExist >= 2 // At least profiles and companies should work
     });
 
@@ -396,7 +415,7 @@ export async function checkProfilesTable() {
 
 // Get database setup status
 export async function getDatabaseStatus() {
-  const tables = ['profiles', 'companies', 'customers', 'products', 'quotations', 'invoices'];
+  const tables = ['profiles', 'companies', 'customers', 'products', 'quotations', 'invoices', 'audit_logs'];
   const status = {
     tablesChecked: 0,
     tablesWorking: 0,

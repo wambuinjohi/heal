@@ -21,6 +21,7 @@ import { Search, LogIn, CheckCircle, UserPlus } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
+import { ensureAuditLogSchema } from '@/utils/auditLogger';
 
 interface AuditLog {
   id: string;
@@ -98,6 +99,24 @@ export function UserAuditLog({ limit = 50 }: UserAuditLogProps) {
       const { data, error } = await query;
 
       if (error) {
+        // If table doesn't exist, try to create it
+        if (error.code === 'PGRST205' || error.message?.includes('Could not find the table')) {
+          console.warn('Audit logs table not found, attempting to create schema...');
+          try {
+            await ensureAuditLogSchema();
+            // Try fetching again after schema is created
+            const { data: retryData, error: retryError } = await query;
+            if (retryError) {
+              throw retryError;
+            }
+            setLogs(retryData || []);
+            return;
+          } catch (schemaErr) {
+            const schemaErrorMsg = schemaErr instanceof Error ? schemaErr.message : JSON.stringify(schemaErr);
+            console.error('Failed to create audit logs schema:', schemaErrorMsg);
+            throw schemaErr;
+          }
+        }
         throw error;
       }
 
@@ -107,6 +126,7 @@ export function UserAuditLog({ limit = 50 }: UserAuditLogProps) {
       console.error('Error fetching audit logs:', errorMessage);
       console.error('Full error details:', err);
       toast.error(`Failed to fetch audit logs: ${errorMessage}`);
+      setLogs([]);
     } finally {
       setLoading(false);
     }
