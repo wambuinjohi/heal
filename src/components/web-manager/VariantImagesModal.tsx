@@ -97,7 +97,7 @@ export const VariantImagesModal = ({
 
           {/* Image Info */}
           {currentImage?.altText && (
-            <div className="bg-blue-50 border border-blue-200 rounded p-3">
+            <div className="bg-orange-50 border border-orange-200 rounded p-3">
               <p className="text-sm text-gray-700">
                 <span className="font-semibold">Alt Text:</span> {currentImage.altText}
               </p>
