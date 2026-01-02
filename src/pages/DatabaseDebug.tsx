@@ -370,15 +370,15 @@ ${SQL_MIGRATION}`;
         )}
 
         {/* Setup Instructions */}
-        <Card className="bg-blue-50 border-blue-200">
+        <Card className="bg-orange-50 border-orange-200">
           <CardHeader>
-            <CardTitle className="text-blue-900">🔧 Setup Instructions</CardTitle>
+            <CardTitle className="text-orange-900">🔧 Setup Instructions</CardTitle>
           </CardHeader>
-          <CardContent className="text-sm text-blue-800 space-y-4">
+          <CardContent className="text-sm text-orange-800 space-y-4">
             <div>
               <p className="font-semibold mb-2">Step 1: Open Supabase SQL Editor</p>
               <ol className="list-decimal list-inside space-y-2 ml-2">
-                <li>Go to <a href="https://app.supabase.com" target="_blank" rel="noopener noreferrer" className="underline font-bold text-blue-600">Supabase Dashboard</a></li>
+                <li>Go to <a href="https://app.supabase.com" target="_blank" rel="noopener noreferrer" className="underline font-bold text-orange-600">Supabase Dashboard</a></li>
                 <li>Select your project (mfcdlqixqydyrcflkmag)</li>
                 <li>Click on <span className="bg-white px-2 py-1 rounded text-gray-800 font-semibold">SQL Editor</span> in the left menu</li>
                 <li>Click <span className="bg-white px-2 py-1 rounded text-gray-800 font-semibold">New Query</span></li>
