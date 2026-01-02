@@ -235,7 +235,7 @@ export default function DeliveryNotes() {
         <Card>
           <CardContent className="flex items-center p-6">
             <div className="flex items-center space-x-2">
-              <Truck className="h-8 w-8 text-blue-500" />
+              <Truck className="h-8 w-8 text-orange-500" />
               <div>
                 <p className="text-lg font-bold">{inTransit}</p>
                 <p className="text-xs text-muted-foreground">In Transit</p>
