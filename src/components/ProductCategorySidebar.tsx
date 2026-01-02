@@ -52,7 +52,7 @@ export default function ProductCategorySidebar({
       >
         <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
           {/* Sidebar Header */}
-          <div className="hidden md:block px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-green-50">
+          <div className="hidden md:block px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-orange-50 to-amber-50">
             <h3 className="font-bold text-gray-900 text-lg">Product Categories</h3>
           </div>
 
