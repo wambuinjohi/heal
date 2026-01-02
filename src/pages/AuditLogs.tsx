@@ -36,7 +36,27 @@ async function fetchAuditLogs() {
     .order('created_at', { ascending: false })
     .limit(500);
 
-  if (error) throw error;
+  if (error) {
+    // If table doesn't exist, try to create it
+    if (error.code === 'PGRST205' || error.message?.includes('Could not find the table')) {
+      console.warn('Audit logs table not found, attempting to create schema...');
+      try {
+        await ensureAuditLogSchema();
+        // Try fetching again after schema is created
+        const { data: retryData, error: retryError } = await supabase
+          .from('audit_logs')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(500);
+        if (retryError) throw retryError;
+        return retryData || [];
+      } catch (schemaErr) {
+        console.error('Failed to create audit logs schema:', schemaErr);
+        throw schemaErr;
+      }
+    }
+    throw error;
+  }
   return data || [];
 }
 
