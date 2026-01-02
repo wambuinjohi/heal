@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, Copy, CheckCircle2 } from 'lucide-react';
+import { Loader2, Copy, CheckCircle2, Zap } from 'lucide-react';
+import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase';
+import { createAdminUser } from '@/utils/adminSetup';
 
 export default function AdminInit() {
   const [adminExists, setAdminExists] = useState(false);
   const [checkingAdmin, setCheckingAdmin] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [creating, setCreating] = useState(false);
+  const [creationProgress, setCreationProgress] = useState<string[]>([]);
 
   const ADMIN_EMAIL = 'admin@mail.com';
   const ADMIN_PASSWORD = 'Admin.12';
@@ -44,6 +48,40 @@ export default function AdminInit() {
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  }
+
+  async function autoCreateAdmin() {
+    setCreating(true);
+    setCreationProgress([]);
+
+    try {
+      await createAdminUser({
+        email: ADMIN_EMAIL,
+        password: ADMIN_PASSWORD,
+        fullName: ADMIN_NAME,
+        onProgress: (message: string) => {
+          setCreationProgress(prev => [...prev, message]);
+        },
+      });
+
+      // Verify creation
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setAdminExists(true);
+
+      toast.success('✅ Admin user created successfully!', {
+        description: `Email: ${ADMIN_EMAIL}`,
+        duration: 5000,
+      });
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to create admin user';
+      toast.error('Creation failed', {
+        description: errorMessage,
+        duration: 5000,
+      });
+      console.error('Admin creation error:', error);
+    } finally {
+      setCreating(false);
+    }
   }
 
   if (checkingAdmin) {
