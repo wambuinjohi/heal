@@ -49,7 +49,7 @@ export default function AdminInit() {
   if (checkingAdmin) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
-        <Card className="w-full max-w-md shadow-lg">
+        <Card className="w-full max-w-2xl shadow-lg">
           <CardContent className="flex items-center justify-center p-8">
             <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
           </CardContent>
@@ -60,7 +60,7 @@ export default function AdminInit() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
-      <Card className="w-full max-w-md shadow-lg">
+      <Card className="w-full max-w-2xl shadow-lg">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Admin Initialization</CardTitle>
           <CardDescription>
@@ -70,44 +70,27 @@ export default function AdminInit() {
 
         <CardContent className="space-y-6">
           {adminExists ? (
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
-              <p className="text-yellow-800 font-medium">⚠️ Admin Already Exists</p>
-              <p className="text-sm text-yellow-700 mt-2">
-                The admin user {ADMIN_EMAIL} has already been initialized.
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+              <CheckCircle2 className="h-12 w-12 text-green-600 mx-auto mb-3" />
+              <p className="text-green-800 font-medium text-lg">✅ Admin Already Initialized</p>
+              <p className="text-sm text-green-700 mt-2">
+                The admin user {ADMIN_EMAIL} is ready to use.
               </p>
-              <Button 
-                onClick={() => window.location.href = '/'}
-                variant="outline"
-                className="w-full mt-4"
-              >
-                Go to Sign In
-              </Button>
-            </div>
-          ) : initialized ? (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center space-y-3">
-              <p className="text-green-800 font-medium">✅ Initialization Complete!</p>
-              <div className="text-sm text-green-700 space-y-2">
-                <p>Admin user has been successfully created.</p>
-                <div className="bg-white rounded p-3 text-left space-y-1 border border-green-200">
-                  <div className="flex justify-between text-xs">
-                    <span className="font-semibold">Email:</span>
-                    <span className="font-mono">{ADMIN_EMAIL}</span>
-                  </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="font-semibold">Password:</span>
-                    <span className="font-mono">Admin.12</span>
-                  </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="font-semibold">Role:</span>
-                    <span className="font-mono">admin</span>
-                  </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="font-semibold">Status:</span>
-                    <span className="font-mono">active</span>
-                  </div>
+              <div className="bg-white rounded p-3 text-left space-y-1 border border-green-200 mt-4">
+                <div className="flex justify-between text-sm">
+                  <span className="font-semibold">Email:</span>
+                  <span className="font-mono">{ADMIN_EMAIL}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="font-semibold">Password:</span>
+                  <span className="font-mono">Admin.12</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="font-semibold">Role:</span>
+                  <span className="font-mono">admin</span>
                 </div>
               </div>
-              <Button 
+              <Button
                 onClick={() => window.location.href = '/'}
                 className="w-full mt-4 bg-green-600 hover:bg-green-700"
               >
@@ -116,52 +99,77 @@ export default function AdminInit() {
             </div>
           ) : (
             <div className="space-y-6">
-              <div className="space-y-3 bg-blue-50 rounded-lg p-4">
-                <p className="text-sm font-medium text-blue-900">Admin credentials to be created:</p>
-                <div className="space-y-2 text-sm text-blue-800">
-                  <div className="flex justify-between">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h3 className="font-semibold text-blue-900 mb-3">📋 Setup Instructions</h3>
+                <p className="text-sm text-blue-800 mb-4">
+                  Run the setup script from your terminal to create the admin user:
+                </p>
+
+                <div className="bg-gray-900 rounded p-4 mb-4">
+                  <div className="flex items-center justify-between">
+                    <code className="text-green-400 font-mono text-sm">{setupCommand}</code>
+                    <button
+                      onClick={() => copyToClipboard(setupCommand)}
+                      className="text-gray-400 hover:text-gray-200 transition"
+                      title="Copy command"
+                    >
+                      {copied ? (
+                        <CheckCircle2 className="h-5 w-5 text-green-400" />
+                      ) : (
+                        <Copy className="h-5 w-5" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                <div className="text-sm text-blue-800 space-y-2">
+                  <p className="font-medium">Steps:</p>
+                  <ol className="list-decimal list-inside space-y-1 ml-2">
+                    <li>Open your terminal in the project directory</li>
+                    <li>Run <code className="bg-blue-100 px-2 py-1 rounded font-mono">chmod +x setup-admin.sh</code></li>
+                    <li>Run <code className="bg-blue-100 px-2 py-1 rounded font-mono">{setupCommand}</code></li>
+                    <li>The script will create the admin user automatically</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div className="space-y-3 bg-indigo-50 rounded-lg p-4">
+                <p className="text-sm font-medium text-indigo-900">Admin credentials to be created:</p>
+                <div className="space-y-2 text-sm text-indigo-800">
+                  <div className="flex justify-between bg-white rounded p-2">
                     <span>Email:</span>
                     <span className="font-mono font-medium">{ADMIN_EMAIL}</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between bg-white rounded p-2">
                     <span>Password:</span>
-                    <span className="font-mono font-medium">Admin.12</span>
+                    <span className="font-mono font-medium">{ADMIN_PASSWORD}</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between bg-white rounded p-2">
                     <span>Role:</span>
                     <span className="font-mono font-medium">admin</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Status:</span>
-                    <span className="font-mono font-medium">active</span>
+                  <div className="flex justify-between bg-white rounded p-2">
+                    <span>Full Name:</span>
+                    <span className="font-mono font-medium">{ADMIN_NAME}</span>
                   </div>
                 </div>
               </div>
 
-              <Button
-                onClick={initializeAdmin}
-                disabled={loading}
-                size="lg"
-                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Initializing...
-                  </>
-                ) : (
-                  'Initialize Admin User'
-                )}
-              </Button>
-
-              <div className="text-xs text-gray-600 bg-gray-50 rounded p-3">
-                <p className="font-medium mb-2">This will:</p>
+              <div className="text-xs text-gray-600 bg-gray-50 rounded p-4">
+                <p className="font-medium mb-2">The setup script will:</p>
                 <ul className="list-disc list-inside space-y-1">
-                  <li>Create authentication user</li>
-                  <li>Set up admin profile</li>
-                  <li>Assign admin permissions</li>
+                  <li>Create the default company (Medical Supplies)</li>
+                  <li>Create authentication user with secure credentials</li>
+                  <li>Set up admin profile in the database</li>
+                  <li>Assign admin permissions and roles</li>
                   <li>Activate the account immediately</li>
                 </ul>
+              </div>
+
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                <p className="text-xs text-amber-800">
+                  <span className="font-semibold">ℹ️ Note:</span> The script uses the Supabase Service Role Key to bypass database security policies, ensuring reliable admin creation even with complex RLS setups.
+                </p>
               </div>
             </div>
           )}
