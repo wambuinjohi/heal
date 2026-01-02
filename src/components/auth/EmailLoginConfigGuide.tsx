@@ -135,10 +135,10 @@ export function EmailLoginConfigGuide() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">What You're Looking For</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Alert className="border-blue-200 bg-blue-50">
-                <Key className="h-4 w-4 text-blue-600" />
+              <Alert className="border-orange-200 bg-orange-50">
+                <Key className="h-4 w-4 text-orange-600" />
                 <AlertDescription>
-                  <div className="space-y-2 text-blue-700">
+                  <div className="space-y-2 text-orange-700">
                     <p className="font-medium">Auth Providers Section</p>
                     <ul className="text-sm space-y-1">
                       <li>• Look for "Email" provider</li>
