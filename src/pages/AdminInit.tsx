@@ -52,7 +52,8 @@ export default function AdminInit() {
       }
 
       // Get Supabase URL
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseUrl = import.meta.env.NEXT_PUBLIC_SUPABASE_URL ||
+                          import.meta.env.VITE_SUPABASE_URL;
       if (!supabaseUrl) {
         throw new Error('Supabase URL not configured');
       }
