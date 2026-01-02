@@ -142,14 +142,14 @@ export function EnhancedLogin() {
                   <span className="text-base sm:text-lg">🔐</span> Password
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 sm:left-4 top-1/2 h-4 w-4 sm:h-5 sm:w-5 -translate-y-1/2 text-blue-500 group-focus-within:text-green-500 transition-colors" />
+                  <Lock className="absolute left-3 sm:left-4 top-1/2 h-4 w-4 sm:h-5 sm:w-5 -translate-y-1/2 text-orange-500 group-focus-within:text-amber-500 transition-colors" />
                   <Input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="••••••••"
                     value={formData.password}
                     onChange={handleInputChange('password')}
-                    className={`pl-10 sm:pl-12 pr-10 sm:pr-12 py-2 sm:py-3 text-sm sm:text-base border-2 rounded-lg transition-all duration-300 hover:border-blue-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 ${
+                    className={`pl-10 sm:pl-12 pr-10 sm:pr-12 py-2 sm:py-3 text-sm sm:text-base border-2 rounded-lg transition-all duration-300 hover:border-orange-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 ${
                       formErrors.password ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-gray-200'
                     }`}
                     disabled={submitting}
@@ -158,7 +158,7 @@ export function EnhancedLogin() {
                     type="button"
                     variant="ghost"
                     size="icon"
-                    className="absolute right-2 top-1/2 h-8 w-8 sm:h-9 sm:w-9 -translate-y-1/2 hover:bg-blue-100 text-gray-600 hover:text-blue-600 transition-colors"
+                    className="absolute right-2 top-1/2 h-8 w-8 sm:h-9 sm:w-9 -translate-y-1/2 hover:bg-orange-100 text-gray-600 hover:text-orange-600 transition-colors"
                     onClick={() => setShowPassword(!showPassword)}
                     disabled={submitting}
                   >
