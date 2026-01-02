@@ -100,14 +100,34 @@ export async function createTestUser(email: string, password: string) {
   try {
     console.log(`🔄 Creating test user: ${email}`);
 
+    // Get environment variables
+    const supabaseUrl = import.meta.env.NEXT_PUBLIC_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL;
+    const supabaseKey = import.meta.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY ||
+                        import.meta.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+                        import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl) {
+      return {
+        success: false,
+        error: 'Supabase URL not configured'
+      };
+    }
+
+    if (!supabaseKey) {
+      return {
+        success: false,
+        error: 'Supabase key not configured'
+      };
+    }
+
     // Call the admin-create-user edge function
     const response = await fetch(
-      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-create-user`,
+      `${supabaseUrl}/functions/v1/admin-create-user`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY}`,
+          'Authorization': `Bearer ${supabaseKey}`,
         },
         body: JSON.stringify({
           email,
@@ -124,7 +144,7 @@ export async function createTestUser(email: string, password: string) {
       console.error('❌ Failed to create test user:', data);
       return {
         success: false,
-        error: data.error || 'Failed to create user',
+        error: data.error || data.message || 'Failed to create user',
         data
       };
     }
