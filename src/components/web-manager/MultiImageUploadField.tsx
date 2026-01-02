@@ -142,7 +142,7 @@ export const MultiImageUploadField = ({
                 {images.length > 1 && (
                   <button
                     type="button"
-                    className="mt-1 flex-shrink-0 cursor-grab active:cursor-grabbing text-gray-400 hover:text-blue-600 transition-colors"
+                    className="mt-1 flex-shrink-0 cursor-grab active:cursor-grabbing text-gray-400 hover:text-orange-600 transition-colors"
                     title="Drag to reorder"
                   >
                     <GripVertical size={18} />
