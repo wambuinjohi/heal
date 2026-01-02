@@ -15,7 +15,7 @@ COPY . .
 
 # Set environment variables for build
 ENV NEXT_PUBLIC_SUPABASE_URL=https://mfcdlqixqydyrcflkmag.supabase.co
-ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_oWKU3CCosDOn668-0zGQJQ_a7iQyD5T
+ENV NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=sb_publishable_oWKU3CCosDOn668-0zGQJQ_a7iQyD5T
 ENV DATABASE_URL=postgresql://postgres:Sirgeorge@12@db.mfcdlqixqydyrcflkmag.supabase.co:5432/postgres
 
 # Build the app
