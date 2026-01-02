@@ -32,8 +32,8 @@ export default function PerformanceOptimizerPage() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-medium text-blue-800 mb-2">Application Optimization:</h4>
-                <ul className="text-sm text-blue-700 space-y-1">
+                <h4 className="font-medium text-orange-800 mb-2">Application Optimization:</h4>
+                <ul className="text-sm text-orange-700 space-y-1">
                   <li>• Implement pagination (20 items per page)</li>
                   <li>• Add React component memoization</li>
                   <li>• Optimize data transformations and calculations</li>
