@@ -112,7 +112,7 @@ export default function AdminInit() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Admin Initialization</CardTitle>
           <CardDescription>
-            Set up the first admin user for >> Medical Supplies
+            Set up the first admin user for Medical Supplies
           </CardDescription>
         </CardHeader>
 
