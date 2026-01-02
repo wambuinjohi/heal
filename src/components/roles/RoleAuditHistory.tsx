@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ChevronDown, Download } from 'lucide-react';
+import { ensureAuditLogSchema } from '@/utils/auditLogger';
 
 interface RoleAuditHistoryProps {
   roleId: string;
