@@ -51,8 +51,9 @@ export const usePermissions = () => {
         .maybeSingle();
 
       if (fetchError) {
-        console.error('Error fetching user role:', fetchError);
-        setError(fetchError.message);
+        const errorMessage = fetchError instanceof Error ? fetchError.message : JSON.stringify(fetchError);
+        console.error('Error fetching user role:', errorMessage);
+        setError(errorMessage);
         setRole(null);
       } else if (data) {
         setRole(data);
