@@ -12,7 +12,7 @@ export interface SEOMetadata {
 }
 
 export const SITE_CONFIG = {
-  siteName: 'Medplus Africa',
+  siteName: '&gt;&gt; Medical Supplies',
   url: 'https://medplusafrica.com',
   logo: 'https://medplusafrica.com/assets/medplus-logo.webp',
   description: 'Trusted distributor of critical care supplies, hospital consumables, and furniture across Africa.',
