@@ -31,7 +31,7 @@ export default function Media() {
     {
       id: 1,
       date: 'January 15, 2025',
-      title: 'Medplus Africa Expands Operations to East Africa',
+      title: '&gt;&gt; Medical Supplies Expands Operations to East Africa',
       excerpt: 'We are excited to announce the opening of our new distribution center in Kampala, Uganda...',
       category: 'News'
     },
@@ -52,7 +52,7 @@ export default function Media() {
     {
       id: 4,
       date: 'December 15, 2024',
-      title: 'Medplus Africa Achieves ISO 9001 Certification',
+      title: '&gt;&gt; Medical Supplies Achieves ISO 9001 Certification',
       excerpt: 'We are proud to announce that we have successfully obtained ISO 9001 certification...',
       category: 'News'
     },
@@ -96,7 +96,7 @@ export default function Media() {
     {
       id: 2,
       date: 'February 28, 2025',
-      title: 'Medplus Africa Product Exhibition',
+      title: '&gt;&gt; Medical Supplies Product Exhibition',
       location: 'Kenyatta International Convention Center',
       description: 'Showcase of our latest products and solutions in medical supplies and equipment.',
     },

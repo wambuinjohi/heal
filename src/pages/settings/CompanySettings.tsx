@@ -29,7 +29,7 @@ export default function CompanySettings() {
   const [storageStatus, setStorageStatus] = useState<'unknown' | 'available' | 'unavailable'>('unknown');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [companyData, setCompanyData] = useState({
-    name: 'MEDPLUS AFRICA',
+    name: '&gt;&gt; MEDICAL SUPPLIES',
     registration_number: '',
     tax_number: 'P051658002D',
     email: 'info@medplusafrica.com',
