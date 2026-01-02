@@ -475,12 +475,12 @@ export const CreateLPOModal = ({
                   )}
 
                   {/* Create New Supplier Option */}
-                  <div className="px-2 py-1 text-xs font-semibold text-blue-600 bg-blue-50 border-b border-t">
+                  <div className="px-2 py-1 text-xs font-semibold text-orange-600 bg-orange-50 border-b border-t">
                     ➕ Add New Supplier
                   </div>
                   <SelectItem value="__create_new__">
                     <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
                       Create New Supplier...
                     </div>
                   </SelectItem>
