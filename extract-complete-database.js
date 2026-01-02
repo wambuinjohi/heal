@@ -24,7 +24,7 @@ async function extractCompleteSchema() {
     let sqlOutput = `-- =============================================
 -- COMPLETE BIOLEGEND DATABASE BACKUP
 -- Generated: ${new Date().toISOString()}
--- Project: klifzjcfnlaxminytmyh
+-- Project: Database Migration
 -- =============================================
 
 -- Enable necessary extensions
