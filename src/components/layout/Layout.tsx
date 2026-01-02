@@ -1,4 +1,5 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 import { useAuth } from '@/contexts/AuthContext';
@@ -12,6 +13,7 @@ export function Layout({ children }: LayoutProps) {
   const { isAuthenticated, loading } = useAuth();
   const [loadingStartTime] = useState(Date.now());
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -20,6 +22,11 @@ export function Layout({ children }: LayoutProps) {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
+  // Close mobile menu when navigation changes
+  useEffect(() => {
+    closeMobileMenu();
+  }, [location.pathname]);
 
   // Show login if not authenticated
   if (!loading && !isAuthenticated) {
