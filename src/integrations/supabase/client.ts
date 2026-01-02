@@ -14,7 +14,10 @@ const isMissingConfig = !SUPABASE_URL || SUPABASE_URL === 'undefined' ||
                        !SUPABASE_PUBLISHABLE_KEY || SUPABASE_PUBLISHABLE_KEY === 'undefined';
 
 if (isMissingConfig) {
-  console.warn('⚠️ Supabase configuration is missing. Environment variables not properly set. App will continue with limited functionality.');
+  console.warn('⚠️ Supabase configuration is missing.');
+  console.warn('   VITE_SUPABASE_URL:', import.meta.env.VITE_SUPABASE_URL ? '✓ Set' : '✗ Missing');
+  console.warn('   VITE_SUPABASE_ANON_KEY:', import.meta.env.VITE_SUPABASE_ANON_KEY ? '✓ Set' : '✗ Missing');
+  console.warn('   App will continue with limited functionality.');
 }
 
 // Lazy initialize the Supabase client
