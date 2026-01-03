@@ -7,7 +7,15 @@ import { getColorAsHslVar, lightenColor, darkenColor } from '@/utils/colorUtils'
  * Sets CSS variables for the primary color and its variants
  */
 export const useCompanyBranding = () => {
-  const { currentCompany } = useCurrentCompany();
+  try {
+    // This hook should be used within CompanyProvider context
+    // If it throws, it means the component is not wrapped properly
+    var context = useCurrentCompany();
+    var { currentCompany } = context;
+  } catch (error) {
+    console.warn('useCompanyBranding: Not within CompanyProvider context', error);
+    return;
+  }
 
   useEffect(() => {
     if (!currentCompany?.primary_color) {
