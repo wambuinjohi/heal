@@ -68,6 +68,7 @@ interface CompanyDetails {
   email?: string;
   tax_number?: string;
   logo_url?: string;
+  primary_color?: string;
 }
 
 // Default company details (fallback) - logo will be determined dynamically
@@ -79,7 +80,8 @@ const DEFAULT_COMPANY: CompanyDetails = {
   phone: '',
   email: 'info@medplusafrica.com',
   tax_number: '',
-  logo_url: 'https://cdn.builder.io/api/v1/image/assets%2Ffd1c9d5781fc4f20b6ad16683f5b85b3%2F274fc62c033e464584b0f50713695127?format=webp&width=800' // Will use company settings or fallback gracefully
+  logo_url: 'https://cdn.builder.io/api/v1/image/assets%2Ffd1c9d5781fc4f20b6ad16683f5b85b3%2F274fc62c033e464584b0f50713695127?format=webp&width=800', // Will use company settings or fallback gracefully
+  primary_color: '#FF8C42' // Default orange color
 };
 
 // Default terms and conditions (extracted from provided invoice image)

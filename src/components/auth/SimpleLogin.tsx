@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,13 +8,37 @@ import { Loader2, Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import { BiolegendLogo } from '@/components/ui/biolegend-logo';
 import { toast } from 'sonner';
 import { handleAuthError } from '@/utils/authErrorHandler';
+import { supabase } from '@/integrations/supabase/client';
 
 export function SimpleLogin() {
   const { signIn, loading } = useAuth();
+  const [companyName, setCompanyName] = useState('>> Medical Supplies');
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+  // Fetch company name from database
+  useEffect(() => {
+    const fetchCompanyName = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('companies')
+          .select('name')
+          .limit(1)
+          .single();
+
+        if (!error && data?.name) {
+          setCompanyName(data.name);
+        }
+      } catch (error) {
+        console.warn('Failed to fetch company name:', error);
+        // Keep the default company name
+      }
+    };
+
+    fetchCompanyName();
+  }, []);
   const [showPassword, setShowPassword] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
@@ -47,7 +71,7 @@ export function SimpleLogin() {
     if (error) {
       handleAuthError(error);
     } else {
-      toast.success('Welcome to &gt;&gt; Medical Supplies!');
+      toast.success(`Welcome to ${companyName}!`);
     }
   };
 

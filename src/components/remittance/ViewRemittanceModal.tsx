@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { downloadRemittancePDF } from '@/utils/pdfGenerator';
 import { toast } from 'sonner';
+import { useCurrentCompany } from '@/contexts/CompanyContext';
 
 interface ViewRemittanceModalProps {
   open: boolean;
@@ -29,12 +30,13 @@ interface ViewRemittanceModalProps {
   onDownload?: () => void;
 }
 
-export function ViewRemittanceModal({ 
-  open, 
-  onOpenChange, 
+export function ViewRemittanceModal({
+  open,
+  onOpenChange,
   remittance,
-  onDownload 
+  onDownload
 }: ViewRemittanceModalProps) {
+  const { currentCompany } = useCurrentCompany();
 
   if (!remittance) return null;
 
@@ -67,6 +69,19 @@ export function ViewRemittanceModal({
 
   const handleDownload = () => {
     try {
+      // Get company details for PDF
+      const companyDetails = currentCompany ? {
+        name: currentCompany.name,
+        address: currentCompany.address,
+        city: currentCompany.city,
+        country: currentCompany.country,
+        phone: currentCompany.phone,
+        email: currentCompany.email,
+        tax_number: currentCompany.tax_number,
+        logo_url: currentCompany.logo_url,
+        primary_color: currentCompany.primary_color
+      } : undefined;
+
       // Use the same download function from the parent component
       const remittanceData = {
         advice_number: remittance.advice_number || remittance.adviceNumber,
@@ -84,7 +99,7 @@ export function ViewRemittanceModal({
         items: remittance.items || [] // Fallback for legacy format
       };
 
-      downloadRemittancePDF(remittanceData);
+      downloadRemittancePDF(remittanceData, companyDetails);
       toast.success(`PDF download started for ${remittance.advice_number || remittance.adviceNumber}`);
       onDownload?.();
     } catch (error) {
@@ -163,16 +178,16 @@ export function ViewRemittanceModal({
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Building2 className="h-5 w-5 text-primary" />
-                <span>From: &gt;&gt; Medical Supplies Limited</span>
+                <span>From: {currentCompany?.name || '>> Medical Supplies Limited'}</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-2 text-sm">
-                <div>P.O Box 85988-00200, Nairobi, Kenya</div>
-                <div>Tel: 0741 207 690/0780 165 490</div>
-                <div>Email: biolegend@biolegendscientific.co.ke/info@biolegendscientific.co.ke</div>
-                <div>Website: www.biolegendscientific.co.ke</div>
-                <div className="text-xs italic text-primary/70">Delivering Discoveries.... and more</div>
+                <div>{currentCompany?.address || 'P.O Box 85988-00200, Nairobi, Kenya'}</div>
+                <div>{currentCompany?.phone || 'Tel: 0741 207 690/0780 165 490'}</div>
+                <div>Email: {currentCompany?.email || 'info@medplusafrica.com'}</div>
+                <div>Country: {currentCompany?.country || 'Kenya'}</div>
+                <div className="text-xs italic text-primary/70">&nbsp;</div>
               </div>
             </CardContent>
           </Card>

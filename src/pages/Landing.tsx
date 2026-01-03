@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,11 +10,33 @@ import { PublicFooter } from '@/components/PublicFooter';
 import { useWebCategories } from '@/hooks/useWebCategories';
 import { useSEO } from '@/hooks/useSEO';
 import { generateOrganizationSchema } from '@/utils/seoHelpers';
+import { supabase } from '@/integrations/supabase/client';
 
 export default function Landing() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+  const [companyName, setCompanyName] = useState('>> Medical Supplies');
   const { categories } = useWebCategories();
+
+  useEffect(() => {
+    const fetchCompanyName = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('companies')
+          .select('name')
+          .limit(1)
+          .single();
+
+        if (!error && data?.name) {
+          setCompanyName(data.name);
+        }
+      } catch (error) {
+        console.warn('Failed to fetch company name:', error);
+      }
+    };
+
+    fetchCompanyName();
+  }, []);
 
   useSEO(
     {
@@ -74,7 +96,7 @@ export default function Landing() {
                     key={item.label}
                     to="/contact"
                     className="text-gray-700 hover:text-primary transition-colors font-medium text-sm lg:text-base px-2 py-2 rounded hover:bg-gray-100"
-                    aria-label="Talk to us - Contact &gt;&gt; Medical Supplies"
+                    aria-label={`Talk to us - Contact ${companyName}`}
                   >
                     {item.label}
                   </Link>
@@ -86,7 +108,7 @@ export default function Landing() {
                     key={item.label}
                     to="/about-us"
                     className="text-gray-700 hover:text-primary transition-colors font-medium text-sm lg:text-base px-2 py-2 rounded hover:bg-gray-100"
-                    aria-label="About Us - Learn about &gt;&gt; Medical Supplies"
+                    aria-label={`About Us - Learn about ${companyName}`}
                   >
                     {item.label}
                   </Link>

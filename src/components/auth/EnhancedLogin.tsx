@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,17 +9,41 @@ import { BiolegendLogo } from '@/components/ui/biolegend-logo';
 import { toast } from 'sonner';
 import { handleAuthError } from '@/utils/authErrorHandler';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
 
 export function EnhancedLogin() {
   const { signIn, loading } = useAuth();
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
+  const [companyName, setCompanyName] = useState('>> Medical Supplies');
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
   const [showPassword, setShowPassword] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+
+  // Fetch company name from database
+  useEffect(() => {
+    const fetchCompanyName = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('companies')
+          .select('name')
+          .limit(1)
+          .single();
+
+        if (!error && data?.name) {
+          setCompanyName(data.name);
+        }
+      } catch (error) {
+        console.warn('Failed to fetch company name:', error);
+        // Keep the default company name
+      }
+    };
+
+    fetchCompanyName();
+  }, []);
 
   const validateForm = () => {
     const errors: Record<string, string> = {};
@@ -57,7 +81,7 @@ export function EnhancedLogin() {
         }, 2000);
       }
     } else {
-      toast.success('Welcome to >> Medical Supplies!');
+      toast.success(`Welcome to ${companyName}!`);
       navigate('/app');
     }
     setSubmitting(false);
@@ -93,7 +117,7 @@ export function EnhancedLogin() {
 
             <div className="space-y-2 sm:space-y-3">
               <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 bg-clip-text text-transparent">
-                &gt;&gt; Medical Supplies
+                {companyName}
               </CardTitle>
               <p className="text-sm sm:text-base text-gray-600 font-medium">
                 💼 Sign in to access your business management system

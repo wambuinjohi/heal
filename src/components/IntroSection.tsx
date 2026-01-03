@@ -1,7 +1,31 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Heart, Globe, Users } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 
 export default function IntroSection() {
+  const [companyName, setCompanyName] = useState('>> Medical Supplies');
+
+  useEffect(() => {
+    const fetchCompanyName = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('companies')
+          .select('name')
+          .limit(1)
+          .single();
+
+        if (!error && data?.name) {
+          setCompanyName(data.name);
+        }
+      } catch (error) {
+        console.warn('Failed to fetch company name:', error);
+      }
+    };
+
+    fetchCompanyName();
+  }, []);
+
   return (
     <section className="py-12 sm:py-24 bg-gradient-to-b from-white via-blue-50/20 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,7 +35,7 @@ export default function IntroSection() {
           <div className="space-y-6 sm:space-y-8">
             <div className="animate-fadeInUp">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-4 sm:mb-6 leading-tight">
-                Welcome to &gt;&gt; Medical Supplies
+                Welcome to {companyName}
               </h2>
               <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
                 Your trusted partner in healthcare excellence across the African continent. For over a decade, we've been committed to delivering premium medical supplies and hospital equipment to healthcare facilities, ensuring quality care reaches every corner of Africa.

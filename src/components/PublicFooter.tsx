@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { MessageCircle } from 'lucide-react';
 import { getProductBySlug } from '@/data/products';
+import { useEffect, useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 
 interface ProductCategory {
   name?: string;
@@ -13,7 +15,51 @@ interface PublicFooterProps {
   productCategories?: (ProductCategory | string)[];
 }
 
+interface CompanyData {
+  name: string;
+  address?: string;
+  city?: string;
+  country?: string;
+  phone?: string;
+  email?: string;
+}
+
 export const PublicFooter = ({ productCategories = [] }: PublicFooterProps) => {
+  const [company, setCompany] = useState<CompanyData>({
+    name: '>> Medical Supplies Limited',
+    address: 'Siens Plaza River Road',
+    city: 'Nairobi',
+    country: 'Kenya',
+    phone: '+254 713 416 022',
+    email: 'sales@medplusafrica.com'
+  });
+
+  useEffect(() => {
+    const fetchCompanyData = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('companies')
+          .select('name, address, city, country, phone, email')
+          .limit(1)
+          .single();
+
+        if (!error && data) {
+          setCompany({
+            name: data.name || company.name,
+            address: data.address || company.address,
+            city: data.city || company.city,
+            country: data.country || company.country,
+            phone: data.phone || company.phone,
+            email: data.email || company.email
+          });
+        }
+      } catch (error) {
+        console.warn('Failed to fetch company data:', error);
+      }
+    };
+
+    fetchCompanyData();
+  }, []);
   const getCategoryName = (category: ProductCategory | string): string => {
     return typeof category === 'string' ? category : category.name || '';
   };
@@ -64,19 +110,19 @@ export const PublicFooter = ({ productCategories = [] }: PublicFooterProps) => {
               </h3>
               <address className="text-gray-300 space-y-3 text-sm not-italic">
                 <div>
-                  <p className="font-semibold">&gt;&gt; Medical Supplies Limited</p>
-                  <p>Siens Plaza River Road</p>
-                  <p>P.O BOX 45352 - 00100, Nairobi, Kenya</p>
+                  <p className="font-semibold">{company.name}</p>
+                  <p>{company.address}</p>
+                  <p>{company.city}, {company.country}</p>
                 </div>
                 <div>
                   <p className="font-semibold mb-1">Phone:</p>
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
-                      <a href="tel:+254713416022" className="hover:text-white transition-colors py-1 block" aria-label="Call us at +254 713 416 022">
-                        +254 713 416 022
+                      <a href={`tel:${company.phone}`} className="hover:text-white transition-colors py-1 block" aria-label={`Call us at ${company.phone}`}>
+                        {company.phone}
                       </a>
                       <a
-                        href="https://api.whatsapp.com/send?phone=254713416022&text=Hello%20Medplus%20Africa"
+                        href={`https://api.whatsapp.com/send?phone=${company.phone?.replace(/\D/g, '')}&text=Hello%20${company.name}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         title="Chat on WhatsApp"
@@ -86,18 +132,13 @@ export const PublicFooter = ({ productCategories = [] }: PublicFooterProps) => {
                         <MessageCircle size={18} />
                       </a>
                     </div>
-                    <p>
-                      <a href="tel:+254786830610" className="hover:text-white transition-colors py-1 block" aria-label="Call us at +254 786 830 610">
-                        +254 786 830 610
-                      </a>
-                    </p>
                   </div>
                 </div>
                 <div>
                   <p className="font-semibold mb-1">Email:</p>
                   <p>
-                    <a href="mailto:sales@medplusafrica.com" className="hover:text-white transition-colors py-1 block" aria-label="Email us at sales@medplusafrica.com">
-                      sales@medplusafrica.com
+                    <a href={`mailto:${company.email}`} className="hover:text-white transition-colors py-1 block" aria-label={`Email us at ${company.email}`}>
+                      {company.email}
                     </a>
                   </p>
                 </div>
@@ -151,7 +192,7 @@ export const PublicFooter = ({ productCategories = [] }: PublicFooterProps) => {
         <div className="pt-6 sm:pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-xs sm:text-sm">
-              © 2025 &gt;&gt; Medical Supplies. All rights reserved.
+              © 2025 {company.name}. All rights reserved.
             </p>
             <div className="flex gap-6">
               <a href="https://www.facebook.com/medplusafrica" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 p-1" aria-label="Visit us on Facebook">
