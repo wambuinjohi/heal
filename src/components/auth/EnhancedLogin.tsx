@@ -114,6 +114,14 @@ export function EnhancedLogin() {
           </CardHeader>
 
           <CardContent className="space-y-4 sm:space-y-6 pt-6 sm:pt-8 p-6 sm:p-8">
+            {companyLoading && (
+              <div className="text-center py-4">
+                <div className="inline-flex items-center gap-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-orange-500 border-t-transparent"></div>
+                  <p className="text-sm text-gray-600">Loading company information...</p>
+                </div>
+              </div>
+            )}
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               {/* Email Field */}
               <div className="space-y-2 group">
@@ -131,7 +139,7 @@ export function EnhancedLogin() {
                     className={`pl-10 sm:pl-12 py-2 sm:py-3 text-sm sm:text-base border-2 rounded-lg transition-all duration-300 hover:border-orange-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 ${
                       formErrors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-gray-200'
                     }`}
-                    disabled={submitting}
+                    disabled={submitting || companyLoading}
                   />
                 </div>
                 {formErrors.email && (
