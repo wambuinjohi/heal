@@ -61,6 +61,10 @@ export const generateLPOPDF = async (lpo: LPOPDFData, company: CompanyData) => {
   // Set font
   doc.setFont('helvetica');
 
+  // Get primary color for branding (default to orange)
+  const primaryColor = (company as any)?.primary_color || '#FF8C42';
+  const headerColor = getColorAsRgbArray(primaryColor);
+
   // Add logo if available
   if (company.logo_url) {
     try {
