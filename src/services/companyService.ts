@@ -28,17 +28,30 @@ export async function fetchPublicCompanyData(): Promise<CompanyData | null> {
 
     // If direct query fails (likely due to RLS), try the public edge function
     console.warn('Direct company fetch failed, using public endpoint:', directError?.message);
-    
+
     try {
-      const response = await fetch('/functions/v1/get-public-company', {
+      // Try relative path first (works in dev environment with proxy)
+      let response = await fetch('/functions/v1/get-public-company', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
-      });
+      }).catch(() => null);
 
-      if (!response.ok) {
-        throw new Error(`Edge function returned ${response.status}`);
+      // If relative path fails, try with full Supabase URL
+      if (!response) {
+        const supabaseUrl = supabase.supabaseUrl;
+        const url = `${supabaseUrl}/functions/v1/get-public-company`;
+        response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+      }
+
+      if (!response?.ok) {
+        throw new Error(`Edge function returned ${response?.status || 'error'}`);
       }
 
       const result = await response.json();
