@@ -23,6 +23,28 @@ export function EnhancedLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
+  // Fetch company name from database
+  useEffect(() => {
+    const fetchCompanyName = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('companies')
+          .select('name')
+          .limit(1)
+          .single();
+
+        if (!error && data?.name) {
+          setCompanyName(data.name);
+        }
+      } catch (error) {
+        console.warn('Failed to fetch company name:', error);
+        // Keep the default company name
+      }
+    };
+
+    fetchCompanyName();
+  }, []);
+
   const validateForm = () => {
     const errors: Record<string, string> = {};
 
