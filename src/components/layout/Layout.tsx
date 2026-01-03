@@ -5,6 +5,7 @@ import { Header } from './Header';
 import { useAuth } from '@/contexts/AuthContext';
 import { EnhancedLogin } from '@/components/auth/EnhancedLogin';
 import { ensureAuditLogSchema } from '@/utils/auditLogger';
+import { useCompanyBranding } from '@/hooks/useCompanyBranding';
 
 interface LayoutProps {
   children: ReactNode;
@@ -15,6 +16,9 @@ export function Layout({ children }: LayoutProps) {
   const [loadingStartTime] = useState(Date.now());
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+
+  // Apply company branding colors globally
+  useCompanyBranding();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
