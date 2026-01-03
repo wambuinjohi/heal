@@ -1,28 +1,35 @@
 import { useEffect } from 'react';
-import { useCurrentCompany } from '@/contexts/CompanyContext';
+import { useCompanies } from '@/hooks/useDatabase';
 import { getColorAsHslVar, lightenColor, darkenColor } from '@/utils/colorUtils';
 
 /**
  * Hook to apply company branding colors to the application
  * Sets CSS variables for the primary color and its variants
+ * Uses useCompanies directly to avoid context dependency issues
  */
 export const useCompanyBranding = () => {
-  try {
-    // This hook should be used within CompanyProvider context
-    // If it throws, it means the component is not wrapped properly
-    var context = useCurrentCompany();
-    var { currentCompany } = context;
-  } catch (error) {
-    console.warn('useCompanyBranding: Not within CompanyProvider context', error);
-    return;
-  }
+  const { data: companies } = useCompanies();
+  const currentCompany = companies?.[0];
 
   useEffect(() => {
     if (!currentCompany?.primary_color) {
-      return; // No color to apply
+      // Apply default orange if no company color is set
+      const defaultColor = '#FF8C42';
+      const defaultHsl = getColorAsHslVar(defaultColor);
+      const hoverColor = darkenColor(defaultColor, 10);
+      const hoverHsl = getColorAsHslVar(hoverColor);
+      const lightColor = lightenColor(defaultColor, 25);
+      const lightHsl = getColorAsHslVar(lightColor);
+
+      const root = document.documentElement;
+      root.style.setProperty('--primary', defaultHsl);
+      root.style.setProperty('--primary-hover', hoverHsl);
+      root.style.setProperty('--primary-light', lightHsl);
+      root.style.setProperty('--primary-foreground', '0 0% 100%');
+      return;
     }
 
-    const primaryColor = currentCompany.primary_color || '#FF8C42';
+    const primaryColor = currentCompany.primary_color;
 
     // Convert hex color to HSL for CSS variables
     const primaryHsl = getColorAsHslVar(primaryColor);
@@ -46,11 +53,11 @@ export const useCompanyBranding = () => {
     }
   }, [currentCompany?.primary_color]);
 
-  // Apply persisted color on mount
+  // Apply persisted color on mount if available
   useEffect(() => {
     try {
       const savedColor = localStorage.getItem('companyPrimaryColor');
-      if (savedColor && (!currentCompany?.primary_color || currentCompany?.primary_color === '#FF8C42')) {
+      if (savedColor && !currentCompany?.primary_color) {
         const primaryHsl = getColorAsHslVar(savedColor);
         const hoverColor = darkenColor(savedColor, 10);
         const hoverHsl = getColorAsHslVar(hoverColor);
