@@ -116,6 +116,7 @@ interface SidebarProps {
 export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
   const location = useLocation();
   const { profile } = useAuth();
+  const { currentCompany } = useCurrentCompany();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
 
   const toggleExpanded = (title: string) => {
