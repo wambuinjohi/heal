@@ -30,12 +30,13 @@ interface ViewRemittanceModalProps {
   onDownload?: () => void;
 }
 
-export function ViewRemittanceModal({ 
-  open, 
-  onOpenChange, 
+export function ViewRemittanceModal({
+  open,
+  onOpenChange,
   remittance,
-  onDownload 
+  onDownload
 }: ViewRemittanceModalProps) {
+  const { currentCompany } = useCurrentCompany();
 
   if (!remittance) return null;
 
