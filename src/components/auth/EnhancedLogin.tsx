@@ -117,7 +117,7 @@ export function EnhancedLogin() {
 
             <div className="space-y-2 sm:space-y-3">
               <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 bg-clip-text text-transparent">
-                &gt;&gt; Medical Supplies
+                {companyName}
               </CardTitle>
               <p className="text-sm sm:text-base text-gray-600 font-medium">
                 💼 Sign in to access your business management system
