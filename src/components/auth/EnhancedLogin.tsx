@@ -234,7 +234,7 @@ export function EnhancedLogin() {
                 <span className="text-base sm:text-lg">👤</span> New user? Contact your administrator to create your account
               </p>
               <p className="text-xs text-gray-500 font-medium">
-                &gt;&gt; Medical Supplies © 2025 - Secure Login
+                {companyName} © 2025 - Secure Login
               </p>
             </div>
           </CardContent>
