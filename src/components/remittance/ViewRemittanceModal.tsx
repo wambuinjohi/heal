@@ -69,6 +69,19 @@ export function ViewRemittanceModal({
 
   const handleDownload = () => {
     try {
+      // Get company details for PDF
+      const companyDetails = currentCompany ? {
+        name: currentCompany.name,
+        address: currentCompany.address,
+        city: currentCompany.city,
+        country: currentCompany.country,
+        phone: currentCompany.phone,
+        email: currentCompany.email,
+        tax_number: currentCompany.tax_number,
+        logo_url: currentCompany.logo_url,
+        primary_color: currentCompany.primary_color
+      } : undefined;
+
       // Use the same download function from the parent component
       const remittanceData = {
         advice_number: remittance.advice_number || remittance.adviceNumber,
@@ -86,7 +99,7 @@ export function ViewRemittanceModal({
         items: remittance.items || [] // Fallback for legacy format
       };
 
-      downloadRemittancePDF(remittanceData);
+      downloadRemittancePDF(remittanceData, companyDetails);
       toast.success(`PDF download started for ${remittance.advice_number || remittance.adviceNumber}`);
       onDownload?.();
     } catch (error) {
