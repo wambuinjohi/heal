@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { MessageCircle } from 'lucide-react';
 import { getProductBySlug } from '@/data/products';
+import { useEffect, useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 
 interface ProductCategory {
   name?: string;
@@ -13,7 +15,51 @@ interface PublicFooterProps {
   productCategories?: (ProductCategory | string)[];
 }
 
+interface CompanyData {
+  name: string;
+  address?: string;
+  city?: string;
+  country?: string;
+  phone?: string;
+  email?: string;
+}
+
 export const PublicFooter = ({ productCategories = [] }: PublicFooterProps) => {
+  const [company, setCompany] = useState<CompanyData>({
+    name: '>> Medical Supplies Limited',
+    address: 'Siens Plaza River Road',
+    city: 'Nairobi',
+    country: 'Kenya',
+    phone: '+254 713 416 022',
+    email: 'sales@medplusafrica.com'
+  });
+
+  useEffect(() => {
+    const fetchCompanyData = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('companies')
+          .select('name, address, city, country, phone, email')
+          .limit(1)
+          .single();
+
+        if (!error && data) {
+          setCompany({
+            name: data.name || company.name,
+            address: data.address || company.address,
+            city: data.city || company.city,
+            country: data.country || company.country,
+            phone: data.phone || company.phone,
+            email: data.email || company.email
+          });
+        }
+      } catch (error) {
+        console.warn('Failed to fetch company data:', error);
+      }
+    };
+
+    fetchCompanyData();
+  }, []);
   const getCategoryName = (category: ProductCategory | string): string => {
     return typeof category === 'string' ? category : category.name || '';
   };
