@@ -1,5 +1,6 @@
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { getColorAsRgbArray } from './colorUtils';
 
 export interface LPOPDFData {
   id: string;
@@ -53,21 +54,28 @@ export interface CompanyData {
   logo_url?: string;
 }
 
-export const generateLPOPDF = (lpo: LPOPDFData, company: CompanyData) => {
+export const generateLPOPDF = async (lpo: LPOPDFData, company: CompanyData) => {
   const doc = new jsPDF();
   let yPosition = 20;
 
   // Set font
   doc.setFont('helvetica');
 
-  // Add logo space reservation if logo URL exists
-  // Note: jsPDF image support requires loading image as base64 and using doc.addImage()
-  // For now, we reserve space and add a placeholder
+  // Get primary color for branding (default to orange)
+  const primaryColor = (company as any)?.primary_color || '#FF8C42';
+  const headerColor = getColorAsRgbArray(primaryColor);
+
+  // Add logo if available
   if (company.logo_url) {
-    doc.setFontSize(8);
-    doc.setTextColor(128, 128, 128);
-    doc.text('[LOGO PLACEHOLDER - jsPDF Image Support Needed]', 20, yPosition);
-    yPosition += 20; // Reserve space for future logo implementation
+    try {
+      const logoBase64 = await loadImageAsBase64(company.logo_url);
+      doc.addImage(logoBase64, 'PNG', 20, yPosition, 40, 20);
+      yPosition += 25;
+    } catch (error) {
+      console.warn('Failed to load logo:', error);
+      // Continue without logo on failure
+      yPosition += 5;
+    }
   }
 
   // Company Header
@@ -235,7 +243,7 @@ export const generateLPOPDF = (lpo: LPOPDFData, company: CompanyData) => {
         cellPadding: 3,
       },
       headStyles: {
-        fillColor: [66, 139, 202],
+        fillColor: headerColor,
         textColor: [255, 255, 255],
         fontStyle: 'bold',
       },
@@ -322,4 +330,21 @@ const formatCurrency = (amount: number) => {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
   }).format(amount);
+};
+
+const loadImageAsBase64 = async (imageUrl: string): Promise<string> => {
+  try {
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        resolve(reader.result as string);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  } catch (error) {
+    throw new Error(`Failed to load image from ${imageUrl}: ${error}`);
+  }
 };

@@ -1,4 +1,5 @@
 import type { CreditNote } from '@/hooks/useCreditNotes';
+import { lightenColor, getColorAsHslVar } from './colorUtils';
 
 export interface CreditNotePDFData extends CreditNote {
   customers: {
@@ -54,6 +55,10 @@ const DEFAULT_COMPANY: CompanyData = {
 
 export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: CompanyData) => {
   const companyData = company || DEFAULT_COMPANY;
+
+  // Get primary color from company settings, with fallback to orange
+  const primaryColor = (company as any)?.primary_color || '#FF8C42';
+  const primaryColorLight = lightenColor(primaryColor, 25);
   
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-KE', {
@@ -127,7 +132,7 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
           gap: 20px;
           align-items: flex-start;
           padding-bottom: 20px;
-          border-bottom: 2px solid #2BB673;
+          border-bottom: 2px solid ${primaryColor};
         }
         
         .header-row-2 {
@@ -166,7 +171,7 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
           font-size: 20px;
           font-weight: bold;
           margin-bottom: 8px;
-          color: #2BB673;
+          color: ${primaryColor};
         }
         
         .company-details {
@@ -190,7 +195,7 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
           font-size: 22px;
           font-weight: bold;
           margin: 0 0 12px 0;
-          color: #2DAAE1;
+          color: ${primaryColor};
           text-transform: uppercase;
           letter-spacing: 1px;
           text-align: right;
@@ -233,7 +238,7 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
         .section-title {
           font-size: 11px;
           font-weight: bold;
-          color: #2DAAE1;
+          color: ${primaryColor};
           margin: 0 0 8px 0;
           text-transform: uppercase;
           letter-spacing: 0.5px;
@@ -263,14 +268,14 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
           border-collapse: collapse;
           margin: 20px 0;
           font-size: 11px;
-          border: 2px solid #2BB673;
+          border: 2px solid ${primaryColor};
           border-radius: 8px;
           overflow: hidden;
           table-layout: auto;
         }
-        
+
         .items-table thead {
-          background: #2BB673;
+          background: ${primaryColor};
           color: white;
         }
         
@@ -366,20 +371,20 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
         }
         
         .totals-table .total-row {
-          border-top: 2px solid #2BB673;
+          border-top: 2px solid ${primaryColor};
           background: #f8f9fa;
         }
-        
+
         .totals-table .total-row .label {
           font-size: 14px;
           font-weight: bold;
-          color: #2BB673;
+          color: ${primaryColor};
         }
-        
+
         .totals-table .total-row .amount {
           font-size: 16px;
           font-weight: bold;
-          color: #2BB673;
+          color: ${primaryColor};
         }
         
         .footer {
@@ -400,7 +405,7 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
           left: 50%;
           transform: translate(-50%, -50%) rotate(-45deg);
           font-size: 72px;
-          color: rgba(43, 182, 115, 0.1);
+          color: color-mix(in srgb, ${primaryColor} 10%, transparent);
           font-weight: bold;
           z-index: -1;
           pointer-events: none;

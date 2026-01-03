@@ -41,7 +41,8 @@ export default function CompanySettings() {
     country: 'Kenya',
     currency: 'KES',
     fiscal_year_start: 1,
-    logo_url: ''
+    logo_url: '',
+    primary_color: '#FF8C42'
   });
 
   const { data: companies, isLoading: companiesLoading, error: companiesError } = useCompanies();
@@ -91,7 +92,8 @@ export default function CompanySettings() {
         country: currentCompany.country || 'Kenya',
         currency: currentCompany.currency || 'KES',
         fiscal_year_start: currentCompany.fiscal_year_start || 1,
-        logo_url: currentCompany.logo_url || ''
+        logo_url: currentCompany.logo_url || '',
+        primary_color: currentCompany.primary_color || '#FF8C42'
       });
     }
   }, [currentCompany]);
@@ -404,7 +406,8 @@ export default function CompanySettings() {
         state: companyData.state?.trim() || null,
         postal_code: companyData.postal_code?.trim() || null,
         country: companyData.country?.trim() || 'Kenya',
-        logo_url: companyData.logo_url?.trim() || null
+        logo_url: companyData.logo_url?.trim() || null,
+        primary_color: companyData.primary_color?.trim() || '#FF8C42'
       };
 
       // Only include optional columns if they might exist in the database
@@ -860,6 +863,59 @@ export default function CompanySettings() {
                   </div>
                 )}
               </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Brand Color */}
+        <Card className="shadow-card">
+          <CardHeader>
+            <CardTitle>Brand Color</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="primary-color">Primary Color</Label>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
+                  <input
+                    type="color"
+                    id="primary-color"
+                    value={companyData.primary_color || '#FF8C42'}
+                    onChange={(e) => setCompanyData(prev => ({ ...prev, primary_color: e.target.value }))}
+                    className="h-12 w-20 rounded border-2 border-input cursor-pointer"
+                  />
+                  <Input
+                    type="text"
+                    value={companyData.primary_color || '#FF8C42'}
+                    onChange={(e) => {
+                      const color = e.target.value;
+                      if (/^#[0-9A-F]{6}$/i.test(color)) {
+                        setCompanyData(prev => ({ ...prev, primary_color: color }));
+                      }
+                    }}
+                    placeholder="#FF8C42"
+                    maxLength={7}
+                    className="font-mono text-sm w-24"
+                  />
+                </div>
+                <div className="flex gap-2 flex-wrap">
+                  {['#FF8C42', '#2563EB', '#DC2626', '#059669', '#7C3AED', '#1F2937'].map(color => (
+                    <button
+                      key={color}
+                      onClick={() => setCompanyData(prev => ({ ...prev, primary_color: color }))}
+                      className="h-8 w-8 rounded border-2 transition-all hover:scale-110"
+                      style={{
+                        backgroundColor: color,
+                        borderColor: companyData.primary_color === color ? '#000' : '#e5e7eb'
+                      }}
+                      title={color}
+                    />
+                  ))}
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                This color will be applied to PDFs, buttons, and other UI elements throughout the application.
+              </p>
             </div>
           </CardContent>
         </Card>
