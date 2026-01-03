@@ -97,7 +97,12 @@ export function EnhancedLogin() {
             {/* Animated Logo */}
             <div className="mx-auto animate-bounce" style={{ animationDuration: '2s' }}>
               <div className="bg-gradient-to-br from-orange-500 to-amber-500 p-2 sm:p-3 rounded-2xl inline-block shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <BiolegendLogo size="lg" showText={false} />
+                <BiolegendLogo
+                  size="lg"
+                  showText={false}
+                  logoUrl={company?.logo_url}
+                  companyName={company?.name}
+                />
               </div>
             </div>
 
