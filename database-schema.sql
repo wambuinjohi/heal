@@ -20,6 +20,7 @@ CREATE TABLE companies (
     logo_url TEXT,
     currency VARCHAR(3) DEFAULT 'KES',
     fiscal_year_start INTEGER DEFAULT 1, -- January = 1
+    primary_color VARCHAR(7) DEFAULT '#FF8C42', -- Brand primary color in hex format
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
