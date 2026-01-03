@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useCurrentCompany } from './useDatabase';
+import { useCurrentCompany } from '@/contexts/CompanyContext';
 import { getColorAsHslVar, lightenColor, darkenColor } from '@/utils/colorUtils';
 
 /**
