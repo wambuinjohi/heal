@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function EnhancedLogin() {
   const { signIn, loading } = useAuth();
-  const { currentCompany, isLoading: companyLoading } = useCurrentCompany();
+  const { currentCompany, isLoading: companyLoading, error: companyError } = useCurrentCompany();
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -23,7 +23,12 @@ export function EnhancedLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
-  // Fallback company name if no company is configured
+  // Log any company loading errors for debugging
+  if (companyError) {
+    console.warn('Failed to load company information:', companyError);
+  }
+
+  // Get company name from context, fallback to default if not available
   const companyName = currentCompany?.name || '>> Medical Supplies';
 
   const validateForm = () => {
