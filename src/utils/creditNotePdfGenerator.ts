@@ -127,7 +127,7 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
           gap: 20px;
           align-items: flex-start;
           padding-bottom: 20px;
-          border-bottom: 2px solid #2BB673;
+          border-bottom: 2px solid #FF8C42;
         }
         
         .header-row-2 {
@@ -166,7 +166,7 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
           font-size: 20px;
           font-weight: bold;
           margin-bottom: 8px;
-          color: #2BB673;
+          color: #FF8C42;
         }
         
         .company-details {
@@ -190,7 +190,7 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
           font-size: 22px;
           font-weight: bold;
           margin: 0 0 12px 0;
-          color: #2DAAE1;
+          color: #FF8C42;
           text-transform: uppercase;
           letter-spacing: 1px;
           text-align: right;
@@ -233,7 +233,7 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
         .section-title {
           font-size: 11px;
           font-weight: bold;
-          color: #2DAAE1;
+          color: #FF8C42;
           margin: 0 0 8px 0;
           text-transform: uppercase;
           letter-spacing: 0.5px;
