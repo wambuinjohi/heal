@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import { usePublicCompany } from '@/hooks/usePublicCompany';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -9,13 +10,12 @@ import { BiolegendLogo } from '@/components/ui/biolegend-logo';
 import { toast } from 'sonner';
 import { handleAuthError } from '@/utils/authErrorHandler';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '@/integrations/supabase/client';
 
 export function EnhancedLogin() {
   const { signIn, loading } = useAuth();
+  const { company, isLoading: companyLoading, error: companyError } = usePublicCompany();
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
-  const [companyName, setCompanyName] = useState('>> Medical Supplies');
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -23,27 +23,13 @@ export function EnhancedLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
-  // Fetch company name from database
-  useEffect(() => {
-    const fetchCompanyName = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('companies')
-          .select('name')
-          .limit(1)
-          .single();
+  // Log any company loading errors for debugging
+  if (companyError) {
+    console.warn('Failed to load company information:', companyError);
+  }
 
-        if (!error && data?.name) {
-          setCompanyName(data.name);
-        }
-      } catch (error) {
-        console.warn('Failed to fetch company name:', error);
-        // Keep the default company name
-      }
-    };
-
-    fetchCompanyName();
-  }, []);
+  // Get company name from fetched data, fallback to default if not available
+  const companyName = company?.name || '>> Medical Supplies';
 
   const validateForm = () => {
     const errors: Record<string, string> = {};
@@ -111,7 +97,12 @@ export function EnhancedLogin() {
             {/* Animated Logo */}
             <div className="mx-auto animate-bounce" style={{ animationDuration: '2s' }}>
               <div className="bg-gradient-to-br from-orange-500 to-amber-500 p-2 sm:p-3 rounded-2xl inline-block shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <BiolegendLogo size="lg" showText={false} />
+                <BiolegendLogo
+                  size="lg"
+                  showText={false}
+                  logoUrl={company?.logo_url}
+                  companyName={company?.name}
+                />
               </div>
             </div>
 
@@ -133,6 +124,14 @@ export function EnhancedLogin() {
           </CardHeader>
 
           <CardContent className="space-y-4 sm:space-y-6 pt-6 sm:pt-8 p-6 sm:p-8">
+            {companyLoading && (
+              <div className="text-center py-4">
+                <div className="inline-flex items-center gap-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-orange-500 border-t-transparent"></div>
+                  <p className="text-sm text-gray-600">Loading company information...</p>
+                </div>
+              </div>
+            )}
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               {/* Email Field */}
               <div className="space-y-2 group">
@@ -150,7 +149,7 @@ export function EnhancedLogin() {
                     className={`pl-10 sm:pl-12 py-2 sm:py-3 text-sm sm:text-base border-2 rounded-lg transition-all duration-300 hover:border-orange-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 ${
                       formErrors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-gray-200'
                     }`}
-                    disabled={submitting}
+                    disabled={submitting || companyLoading}
                   />
                 </div>
                 {formErrors.email && (
@@ -176,7 +175,7 @@ export function EnhancedLogin() {
                     className={`pl-10 sm:pl-12 pr-10 sm:pr-12 py-2 sm:py-3 text-sm sm:text-base border-2 rounded-lg transition-all duration-300 hover:border-orange-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 ${
                       formErrors.password ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-gray-200'
                     }`}
-                    disabled={submitting}
+                    disabled={submitting || companyLoading}
                   />
                   <Button
                     type="button"
@@ -184,7 +183,7 @@ export function EnhancedLogin() {
                     size="icon"
                     className="absolute right-2 top-1/2 h-8 w-8 sm:h-9 sm:w-9 -translate-y-1/2 hover:bg-orange-100 text-gray-600 hover:text-orange-600 transition-colors"
                     onClick={() => setShowPassword(!showPassword)}
-                    disabled={submitting}
+                    disabled={submitting || companyLoading}
                   >
                     {showPassword ? (
                       <Eye className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -205,7 +204,7 @@ export function EnhancedLogin() {
                 <Button
                   type="submit"
                   className="w-full py-2 sm:py-3 text-base sm:text-lg font-bold bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 rounded-lg"
-                  disabled={submitting}
+                  disabled={submitting || companyLoading}
                 >
                   {submitting ? (
                     <>
@@ -245,7 +244,7 @@ export function EnhancedLogin() {
                 <span className="text-base sm:text-lg">👤</span> New user? Contact your administrator to create your account
               </p>
               <p className="text-xs text-gray-500 font-medium">
-                &gt;&gt; Medical Supplies © 2025 - Secure Login
+                {companyName} © 2025 - Secure Login
               </p>
             </div>
           </CardContent>

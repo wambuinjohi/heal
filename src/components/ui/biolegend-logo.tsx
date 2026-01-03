@@ -4,11 +4,20 @@ interface BiolegendLogoProps {
   className?: string;
   size?: "sm" | "md" | "lg";
   showText?: boolean;
+  // Optional props to pass company data directly (useful for public pages like login)
+  logoUrl?: string;
+  companyName?: string;
 }
 
 import { useCurrentCompany } from '@/contexts/CompanyContext';
 
-export function BiolegendLogo({ className, size = "md", showText = true }: BiolegendLogoProps) {
+export function BiolegendLogo({
+  className,
+  size = "md",
+  showText = true,
+  logoUrl: propLogoUrl,
+  companyName: propCompanyName
+}: BiolegendLogoProps) {
   const { currentCompany } = useCurrentCompany();
 
   const sizeClasses = {
@@ -23,10 +32,9 @@ export function BiolegendLogo({ className, size = "md", showText = true }: Biole
     lg: "text-2xl"
   };
 
-  const logoSrc = currentCompany?.logo_url ||
-    '/public/placeholder.svg';
-
-  const companyName = currentCompany?.name || 'MEDPLUS';
+  // Use passed-in data first, then fall back to context
+  const logoSrc = propLogoUrl || currentCompany?.logo_url || '/placeholder.svg';
+  const companyName = propCompanyName || currentCompany?.name || 'MEDPLUS';
 
   return (
     <div className={cn("flex items-center space-x-3", className)}>
