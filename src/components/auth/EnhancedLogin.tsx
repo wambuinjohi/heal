@@ -81,7 +81,7 @@ export function EnhancedLogin() {
         }, 2000);
       }
     } else {
-      toast.success('Welcome to >> Medical Supplies!');
+      toast.success(`Welcome to ${companyName}!`);
       navigate('/app');
     }
     setSubmitting(false);
