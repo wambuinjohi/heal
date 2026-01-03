@@ -20,8 +20,21 @@ const Index = () => {
       // Use real quotation data if available, otherwise use test data
       const realQuotation = quotations?.[0];
 
+      // Get company details for PDF
+      const companyDetails = currentCompany ? {
+        name: currentCompany.name,
+        address: currentCompany.address,
+        city: currentCompany.city,
+        country: currentCompany.country,
+        phone: currentCompany.phone,
+        email: currentCompany.email,
+        tax_number: currentCompany.tax_number,
+        logo_url: currentCompany.logo_url,
+        primary_color: currentCompany.primary_color
+      } : undefined;
+
       if (realQuotation) {
-        downloadQuotationPDF(realQuotation);
+        downloadQuotationPDF(realQuotation, companyDetails);
         toast.success('PDF generated using real quotation data!');
         return;
       }
