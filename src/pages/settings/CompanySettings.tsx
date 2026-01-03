@@ -41,7 +41,8 @@ export default function CompanySettings() {
     country: 'Kenya',
     currency: 'KES',
     fiscal_year_start: 1,
-    logo_url: ''
+    logo_url: '',
+    primary_color: '#FF8C42'
   });
 
   const { data: companies, isLoading: companiesLoading, error: companiesError } = useCompanies();
