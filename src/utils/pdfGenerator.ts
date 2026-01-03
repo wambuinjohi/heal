@@ -219,7 +219,7 @@ export const generatePDF = (data: DocumentData) => {
           gap: 20px;
           align-items: flex-start;
           padding-bottom: 20px;
-          border-bottom: 2px solid #2BB673;
+          border-bottom: 2px solid #FF8C42;
         }
 
         .header-row-2 {
@@ -258,7 +258,7 @@ export const generatePDF = (data: DocumentData) => {
           font-size: 20px;
           font-weight: bold;
           margin-bottom: 8px;
-          color: #2BB673;
+          color: #FF8C42;
         }
 
         .company-details {
@@ -282,7 +282,7 @@ export const generatePDF = (data: DocumentData) => {
           font-size: 11px;
           font-weight: bold;
           margin: 0 0 8px 0;
-          color: #2DAAE1;
+          color: #FF8C42;
           text-transform: uppercase;
           letter-spacing: 0.5px;
           text-align: right;
@@ -326,7 +326,7 @@ export const generatePDF = (data: DocumentData) => {
         .section-title {
           font-size: 14px;
           font-weight: bold;
-          color: #2DAAE1;
+          color: #FF8C42;
           margin: 0 0 15px 0;
           text-transform: uppercase;
           letter-spacing: 0.5px;
@@ -353,14 +353,14 @@ export const generatePDF = (data: DocumentData) => {
           border-collapse: collapse;
           margin: 20px 0;
           font-size: 11px;
-          border: 2px solid #2BB673;
+          border: 2px solid #FF8C42;
           border-radius: 8px;
           overflow: hidden;
           table-layout: auto;
         }
 
         .items-table thead {
-          background: #2BB673;
+          background: #FF8C42;
           color: white;
         }
 
@@ -457,20 +457,20 @@ export const generatePDF = (data: DocumentData) => {
         }
         
         .totals-table .total-row {
-          border-top: 2px solid #2BB673;
+          border-top: 2px solid #FF8C42;
           background: #f8f9fa;
         }
-        
+
         .totals-table .total-row .label {
           font-size: 14px;
           font-weight: bold;
-          color: #2BB673;
+          color: #FF8C42;
         }
-        
+
         .totals-table .total-row .amount {
           font-size: 16px;
           font-weight: bold;
-          color: #2BB673;
+          color: #FF8C42;
         }
         
         .notes-section {
@@ -489,7 +489,7 @@ export const generatePDF = (data: DocumentData) => {
         .section-subtitle {
           font-size: 11px;
           font-weight: bold;
-          color: #2DAAE1;
+          color: #FF8C42;
           margin: 0 0 8px 0;
           text-transform: uppercase;
           letter-spacing: 0.5px;
@@ -546,7 +546,7 @@ export const generatePDF = (data: DocumentData) => {
         .field-label {
           font-size: 10px;
           font-weight: bold;
-          color: #2DAAE1;
+          color: #FF8C42;
           margin-bottom: 4px;
           text-transform: uppercase;
         }
@@ -577,7 +577,7 @@ export const generatePDF = (data: DocumentData) => {
         .signature-label {
           font-size: 11px;
           font-weight: bold;
-          color: #2DAAE1;
+          color: #FF8C42;
           margin-bottom: 20px;
           text-transform: uppercase;
         }
@@ -603,7 +603,7 @@ export const generatePDF = (data: DocumentData) => {
           left: 50%;
           transform: translate(-50%, -50%) rotate(-45deg);
           font-size: 72px;
-          color: rgba(45, 170, 225, 0.1);
+          color: rgba(255, 140, 66, 0.1);
           font-weight: bold;
           z-index: -1;
           pointer-events: none;
@@ -667,7 +667,7 @@ export const generatePDF = (data: DocumentData) => {
           <div class="header-row-2">
             <!-- Client/Supplier Details Section -->
             <div class="customer-info-block">
-              <div class="section-title" style="font-size: 11px; font-weight: bold; color: #2DAAE1; margin-bottom: 8px; text-transform: uppercase;">${data.type === 'lpo' ? 'Supplier' : 'Client'}</div>
+              <div class="section-title" style="font-size: 11px; font-weight: bold; color: #FF8C42; margin-bottom: 8px; text-transform: uppercase;">${data.type === 'lpo' ? 'Supplier' : 'Client'}</div>
               <div class="customer-name" style="font-size: 13px; font-weight: bold; margin-bottom: 4px; color: #212529;">${data.customer.name}</div>
               <div class="customer-details" style="font-size: 10px; color: #666; line-height: 1.4;">
                 ${data.customer.email ? `${data.customer.email}<br>` : ''}
