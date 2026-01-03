@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,11 +9,13 @@ import { BiolegendLogo } from '@/components/ui/biolegend-logo';
 import { toast } from 'sonner';
 import { handleAuthError } from '@/utils/authErrorHandler';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
 
 export function EnhancedLogin() {
   const { signIn, loading } = useAuth();
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
+  const [companyName, setCompanyName] = useState('>> Medical Supplies');
   const [formData, setFormData] = useState({
     email: '',
     password: '',
