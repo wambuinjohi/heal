@@ -243,7 +243,7 @@ export const generateLPOPDF = async (lpo: LPOPDFData, company: CompanyData) => {
         cellPadding: 3,
       },
       headStyles: {
-        fillColor: [255, 140, 66],
+        fillColor: headerColor,
         textColor: [255, 255, 255],
         fontStyle: 'bold',
       },
