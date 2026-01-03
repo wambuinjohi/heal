@@ -165,7 +165,7 @@ export function EnhancedLogin() {
                     className={`pl-10 sm:pl-12 pr-10 sm:pr-12 py-2 sm:py-3 text-sm sm:text-base border-2 rounded-lg transition-all duration-300 hover:border-orange-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 ${
                       formErrors.password ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-gray-200'
                     }`}
-                    disabled={submitting}
+                    disabled={submitting || companyLoading}
                   />
                   <Button
                     type="button"
@@ -173,7 +173,7 @@ export function EnhancedLogin() {
                     size="icon"
                     className="absolute right-2 top-1/2 h-8 w-8 sm:h-9 sm:w-9 -translate-y-1/2 hover:bg-orange-100 text-gray-600 hover:text-orange-600 transition-colors"
                     onClick={() => setShowPassword(!showPassword)}
-                    disabled={submitting}
+                    disabled={submitting || companyLoading}
                   >
                     {showPassword ? (
                       <Eye className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -194,7 +194,7 @@ export function EnhancedLogin() {
                 <Button
                   type="submit"
                   className="w-full py-2 sm:py-3 text-base sm:text-lg font-bold bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 rounded-lg"
-                  disabled={submitting}
+                  disabled={submitting || companyLoading}
                 >
                   {submitting ? (
                     <>
