@@ -71,7 +71,7 @@ export function SimpleLogin() {
     if (error) {
       handleAuthError(error);
     } else {
-      toast.success('Welcome to &gt;&gt; Medical Supplies!');
+      toast.success(`Welcome to ${companyName}!`);
     }
   };
 
