@@ -192,7 +192,7 @@ export const PublicFooter = ({ productCategories = [] }: PublicFooterProps) => {
         <div className="pt-6 sm:pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-xs sm:text-sm">
-              © 2025 &gt;&gt; Medical Supplies. All rights reserved.
+              © 2025 {company.name}. All rights reserved.
             </p>
             <div className="flex gap-6">
               <a href="https://www.facebook.com/medplusafrica" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 p-1" aria-label="Visit us on Facebook">
