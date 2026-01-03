@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { useCurrentCompany } from '@/contexts/CompanyContext';
+import { usePublicCompany } from '@/hooks/usePublicCompany';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function EnhancedLogin() {
   const { signIn, loading } = useAuth();
-  const { currentCompany, isLoading: companyLoading, error: companyError } = useCurrentCompany();
+  const { company, isLoading: companyLoading, error: companyError } = usePublicCompany();
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -28,8 +28,8 @@ export function EnhancedLogin() {
     console.warn('Failed to load company information:', companyError);
   }
 
-  // Get company name from context, fallback to default if not available
-  const companyName = currentCompany?.name || '>> Medical Supplies';
+  // Get company name from fetched data, fallback to default if not available
+  const companyName = company?.name || '>> Medical Supplies';
 
   const validateForm = () => {
     const errors: Record<string, string> = {};
