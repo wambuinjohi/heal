@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { downloadRemittancePDF } from '@/utils/pdfGenerator';
 import { toast } from 'sonner';
+import { useCurrentCompany } from '@/contexts/CompanyContext';
 
 interface ViewRemittanceModalProps {
   open: boolean;
