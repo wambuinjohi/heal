@@ -68,6 +68,7 @@ interface CompanyDetails {
   email?: string;
   tax_number?: string;
   logo_url?: string;
+  primary_color?: string;
 }
 
 // Default company details (fallback) - logo will be determined dynamically
