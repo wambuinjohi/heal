@@ -7,7 +7,7 @@ import { getColorAsHslVar, lightenColor, darkenColor } from '@/utils/colorUtils'
  * Sets CSS variables for the primary color and its variants
  */
 export const useCompanyBranding = () => {
-  const currentCompany = useCurrentCompany();
+  const { currentCompany } = useCurrentCompany();
 
   useEffect(() => {
     if (!currentCompany?.primary_color) {
@@ -15,7 +15,7 @@ export const useCompanyBranding = () => {
     }
 
     const primaryColor = currentCompany.primary_color || '#FF8C42';
-    
+
     // Convert hex color to HSL for CSS variables
     const primaryHsl = getColorAsHslVar(primaryColor);
     const hoverColor = darkenColor(primaryColor, 10);
@@ -42,7 +42,7 @@ export const useCompanyBranding = () => {
   useEffect(() => {
     try {
       const savedColor = localStorage.getItem('companyPrimaryColor');
-      if (savedColor && (!currentCompany?.primary_color || currentCompany.primary_color === '#FF8C42')) {
+      if (savedColor && (!currentCompany?.primary_color || currentCompany?.primary_color === '#FF8C42')) {
         const primaryHsl = getColorAsHslVar(savedColor);
         const hoverColor = darkenColor(savedColor, 10);
         const hoverHsl = getColorAsHslVar(hoverColor);
