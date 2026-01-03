@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useCurrentCompany } from '@/contexts/CompanyContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -9,13 +10,12 @@ import { BiolegendLogo } from '@/components/ui/biolegend-logo';
 import { toast } from 'sonner';
 import { handleAuthError } from '@/utils/authErrorHandler';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '@/integrations/supabase/client';
 
 export function EnhancedLogin() {
   const { signIn, loading } = useAuth();
+  const { currentCompany, isLoading: companyLoading } = useCurrentCompany();
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
-  const [companyName, setCompanyName] = useState('>> Medical Supplies');
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -23,27 +23,8 @@ export function EnhancedLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
-  // Fetch company name from database
-  useEffect(() => {
-    const fetchCompanyName = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('companies')
-          .select('name')
-          .limit(1)
-          .single();
-
-        if (!error && data?.name) {
-          setCompanyName(data.name);
-        }
-      } catch (error) {
-        console.warn('Failed to fetch company name:', error);
-        // Keep the default company name
-      }
-    };
-
-    fetchCompanyName();
-  }, []);
+  // Fallback company name if no company is configured
+  const companyName = currentCompany?.name || '>> Medical Supplies';
 
   const validateForm = () => {
     const errors: Record<string, string> = {};
