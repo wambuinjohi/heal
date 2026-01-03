@@ -263,14 +263,14 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
           border-collapse: collapse;
           margin: 20px 0;
           font-size: 11px;
-          border: 2px solid #2BB673;
+          border: 2px solid #FF8C42;
           border-radius: 8px;
           overflow: hidden;
           table-layout: auto;
         }
-        
+
         .items-table thead {
-          background: #2BB673;
+          background: #FF8C42;
           color: white;
         }
         
@@ -366,20 +366,20 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
         }
         
         .totals-table .total-row {
-          border-top: 2px solid #2BB673;
+          border-top: 2px solid #FF8C42;
           background: #f8f9fa;
         }
-        
+
         .totals-table .total-row .label {
           font-size: 14px;
           font-weight: bold;
-          color: #2BB673;
+          color: #FF8C42;
         }
-        
+
         .totals-table .total-row .amount {
           font-size: 16px;
           font-weight: bold;
-          color: #2BB673;
+          color: #FF8C42;
         }
         
         .footer {
@@ -400,7 +400,7 @@ export const generateCreditNotePDF = (creditNote: CreditNotePDFData, company?: C
           left: 50%;
           transform: translate(-50%, -50%) rotate(-45deg);
           font-size: 72px;
-          color: rgba(43, 182, 115, 0.1);
+          color: rgba(255, 140, 66, 0.1);
           font-weight: bold;
           z-index: -1;
           pointer-events: none;
