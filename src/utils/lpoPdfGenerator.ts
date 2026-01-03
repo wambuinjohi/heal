@@ -1,5 +1,6 @@
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { getColorAsRgbArray } from './colorUtils';
 
 export interface LPOPDFData {
   id: string;
