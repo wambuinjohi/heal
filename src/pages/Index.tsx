@@ -87,7 +87,7 @@ const Index = () => {
         ]
       };
 
-      downloadQuotationPDF(testQuotation);
+      downloadQuotationPDF(testQuotation, companyDetails);
       toast.success('Test PDF generated using sample data (no real quotations found)');
     } catch (error) {
       console.error('Error generating PDF:', error);
